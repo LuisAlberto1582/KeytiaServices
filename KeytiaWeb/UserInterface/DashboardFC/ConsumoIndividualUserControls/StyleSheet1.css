@@ -1,0 +1,166 @@
+﻿.img-fluid {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.MessageLabels {
+    display: block;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+
+.MessageLabelsRojo {
+    display: block;
+    text-align: center;
+    text-overflow: ellipsis;
+    color:red;
+    
+}
+
+
+
+
+.MessageTitles {
+    display: block;
+    text-align: center;
+    font-size: 2.5em;
+    line-height: 60px;
+    
+}
+
+.MessageLabelsApps{
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    
+
+}
+
+.MessageLabelsAppsRojo {
+    display: block;
+    text-align: center;
+    font-size: 1.5em;
+    color: red;
+}
+
+.MessageTitlesCards {
+    display: inline-block;
+    text-align: center;
+    font-size: 3.5em;
+    line-height: 60px;
+    float: left;
+}
+
+.indicadores {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: #fff;
+    border-color: black;
+    border: 1px solid #004080;
+    border-radius: 10px !important;
+    height: 100px;
+}
+
+.rowback {
+    background-color: white;
+    margin: 0px 0 10px 0;
+}
+
+.lnkbutton {
+    display: block;
+    text-decoration: none;
+/*    background-color:red;*/
+    margin-top:20px;
+}
+
+.columnapps {
+    float: left;
+    width: 14.28%;
+    padding: 0 10px;
+    margin: 0px 0 30px 0;
+}
+
+/* Float four columns side by side */
+.column {
+
+    width: 100%;
+    padding: 0 10px;
+    margin: 10px 0;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.fila {
+    margin: 0 -5px;
+}
+
+    /* Clear floats after the columns */
+    .fila:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+/* Style the counter cards */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: #fff;
+    border-color: black;
+    border: 1px solid #004080;
+    border-radius: 10% !important;
+    height:150px;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+
+
+
+.display {
+    width: 100% !important;
+}
+
+
+
+.close{
+    margin:10px;
+    display:block;
+    font-size:20px;
+}
+
+.modal-content{
+    padding:10px !important;
+    
+}
+
+
+.modal-dialog {
+    margin-top: 10px !important;
+   /* margin-bottom: 10px !important;*/
+}
+
+.boton {
+    display: block !important;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #191970;
+    color: white;
+    box-sizing: border-box;
+    width: 80%;
+}
+
+

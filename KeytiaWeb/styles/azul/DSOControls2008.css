@@ -1,0 +1,728 @@
+﻿/*DSODateTimeBox*/
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+/*DSOAutocomplete*/
+	.ui-autocomplete {
+		max-height: 400px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+		/* add padding to account for vertical scrollbar */
+		padding-right: 20px;
+	}
+	/* IE 6 doesn't support max-height
+	 * we use height instead, but this forces the menu to always be this tall
+	 */
+	* html .ui-autocomplete {
+		height: 400px;
+	}
+
+/*.ui-expandable {
+    border: 1px solid #cccccc;
+    border-width: 1px 0;
+}*/
+.ui-expandable .ui-widget-header {
+    overflow: hidden;
+}
+.ui-expandable-icon,
+.ui-expandable .ui-expandable-title {
+    float: left;
+}
+.ui-expandable .ui-widget-header .ui-icon {
+    height:16px;
+    width:16px;
+    margin-right: 2px;
+}
+.ui-expandable .ui-widget-header .ui-icon.icon-closed {
+    background-image: url(expandable-closed.png);
+}
+.ui-expandable .ui-widget-header .ui-icon.icon-open {
+    background-image: url(expandable-open.png);
+}
+.ui-expandable-extraIcon {
+    float: right;
+}
+.ui-expandable .ui-widget-content {
+    border-top-width: 0; /* fixes double border when using jQuery UI theme */
+}
+/* some elements create a gap between content and title (eg. UL) */
+/*.ui-expandable .ui-widget-content {
+    margin: 0;
+    padding: 0;
+}*/
+/* many such corrections could be made I suppose: */
+.ui-expandable .ui-widget-content ul,
+.ui-expandable .ui-widget-content ol,
+.ui-expandable .ui-widget-content dl {
+    padding-left: 15px;
+}
+
+.custom-icon-play{
+	background-image: url('../../images/playsmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-add{
+	background-image: url('../../images/addsmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-save{
+	background-image: url('../../images/databasesmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-edit{
+	background-image: url('../../images/pencilsmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-cancel{
+	background-image: url('../../images/cancelsmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-delete{
+	background-image: url('../../images/deletesmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-search{
+	background-image: url('../../images/searchsmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-ok{
+	background-image: url('../../images/checkmarksmall.png') !important;
+	background-position:center;
+}
+
+.custom-icon-back{
+	background-image: url('../../images/back.gif') !important;
+	background-position:center;
+}
+
+.custom-icon-xls{
+	background-image: url('../../images/ExportXLSsmall.png') !important;
+	background-position:center;
+}
+
+.custom-img-play{
+	border: none;
+}
+
+.custom-img-add{
+	border: none;
+}
+
+.custom-img-save{
+	border: none;
+}
+
+.custom-img-edit{
+	border: none;
+}
+
+.custom-img-cancel{
+	border: none;
+}
+
+.custom-img-delete{
+	border: none;
+}
+
+.custom-img-search{
+	border: none;
+}
+
+.custom-img-ok{
+	border: none;
+}
+
+.custom-img-back{
+	border: none;
+}
+
+.custom-img-xls{
+	border: none;
+}
+
+/*DataTables (DSOGrid)*/
+/*
+ * jQuery UI specific styling
+ */
+
+.paging_two_button .ui-button {
+	float: left;
+	cursor: pointer;
+	* cursor: hand;
+}
+
+.paging_full_numbers .ui-button {
+	padding: 2px 6px;
+	margin: 0;
+	cursor: pointer;
+	* cursor: hand;
+}
+
+.dataTables_paginate .ui-button {
+	margin-right: -0.1em !important;
+}
+
+.paging_full_numbers {
+	width: 400px !important;
+}
+
+.DSOExpandable .dataTables_wrapper .ui-toolbar{
+	padding: 0px;
+}
+
+.dataTables_wrapper .ui-toolbar {
+	padding: 5px;
+}
+
+.dataTables_paginate {
+	width: auto;
+}
+
+.dataTables_info {
+	padding-top: 3px;
+}
+
+table.DSOGrid thead th {
+	padding: 3px 0px 3px 10px;
+	cursor: pointer;
+	* cursor: hand;
+}
+
+div.dataTables_wrapper .ui-widget-header {
+	font-weight: normal;
+}
+
+
+/*
+ * Sort arrow icon positioning
+ */
+table.DSOGrid thead th div.DataTables_sort_wrapper {
+	position: relative;
+	padding-right: 20px;
+	padding-right: 20px;
+}
+
+table.DSOGrid thead th div.DataTables_sort_wrapper span {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 0;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables features
+ */
+
+.dataTables_wrapper {
+	position: relative;
+	min-height: 302px;
+	_height: 302px;
+	clear: both;
+}
+
+.dataTables_processing {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 250px;
+	margin-left: -125px;
+	border: 1px solid #ddd;
+	background: #FFF;
+	text-align: center;
+	color: #999;
+	font-size: 11px;
+	padding: 2px 0;
+}
+
+.dataTables_length {
+	width: 40%;
+	float: left;
+}
+
+.dataTables_filter {
+	width: 40%;
+	float: right;
+	text-align: right;
+	padding-right: 4px;
+}
+
+.dataTables_info {
+	width: 50%;
+	float: left;
+}
+
+.dataTables_paginate {
+	float: left;
+	text-align: left;
+}
+
+/* Pagination nested */
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+	height: 19px;
+	width: 19px;
+	margin-left: 3px;
+	float: left;
+}
+
+.paginate_disabled_previous {
+	background-image: url('images/back_disabled.jpg');
+}
+
+.paginate_enabled_previous {
+	background-image: url('images/back_enabled.jpg');
+}
+
+.paginate_disabled_next {
+	background-image: url('images/forward_disabled.jpg');
+}
+
+.paginate_enabled_next {
+	background-image: url('images/forward_enabled.jpg');
+}
+
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables display
+ */
+table.DSOGrid {
+	margin: 0 auto;
+	width: 100%;
+	clear: both;
+	border-collapse: collapse;
+}
+
+table.DSOGrid tfoot th {
+	padding: 3px 0px 3px 10px;
+	font-weight: bold;
+	font-weight: normal;
+}
+
+table.DSOGrid tr.heading2 td {
+	border-bottom: 1px solid #aaa;
+}
+
+table.DSOGrid td {
+	padding: 3px 10px;
+}
+
+table.DSOGrid td.center {
+	text-align: center;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables sorting
+ */
+
+.sorting_asc {
+	background: url('images/sort_asc.png') no-repeat center right;
+}
+
+.sorting_desc {
+	background: url('images/sort_desc.png') no-repeat center right;
+}
+
+.sorting {
+	background: url('images/sort_both.png') no-repeat center right;
+}
+
+.sorting_asc_disabled {
+	background: url('images/sort_asc_disabled.png') no-repeat center right;
+}
+
+.sorting_desc_disabled {
+	background: url('images/sort_desc_disabled.png') no-repeat center right;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables row classes
+ */
+tr.odd {
+	background-color: #f1f4f8;
+}
+
+tr.even {
+	background-color: white;
+}
+
+tr td.TdEdit, tr td.TdConsult, tr td.TdAceptar, tr td.TdRechazar{
+	text-align: center;
+}
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Misc
+ */
+.dataTables_scroll {
+	clear: both;
+}
+
+.dataTables_scrollHeadInner{
+	width:100% !important;
+}
+
+.top, .bottom {
+	padding: 15px;
+	background-color: #F5F5F5;
+	border: 1px solid #CCCCCC;
+}
+
+.top .dataTables_info {
+	float: none;
+}
+
+.clear {
+	clear: both;
+}
+
+.dataTables_empty {
+	text-align: center;
+}
+
+tfoot input {
+	margin: 0.5em 0;
+	width: 100%;
+	color: #444;
+}
+
+tfoot input.search_init {
+	color: #999;
+}
+
+td.group {
+	background-color: #d1cfd0;
+	border-bottom: 2px solid #A19B9E;
+	border-top: 2px solid #A19B9E;
+}
+
+td.details {
+	background-color: #d1cfd0;
+	border: 2px solid #A19B9E;
+}
+
+.paging_full_numbers span.paginate_button,
+ 	.paging_full_numbers span.paginate_active {
+	border: 1px solid #aaa;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	padding: 2px 5px;
+	margin: 0 3px;
+	cursor: pointer;
+	*cursor: hand;
+}
+
+.paging_full_numbers span.paginate_button {
+	background-color: #ddd;
+}
+
+.paging_full_numbers span.paginate_button:hover {
+	background-color: #ccc;
+}
+
+.paging_full_numbers span.paginate_active {
+	background-color: #99B3FF;
+}
+
+table.DSOGrid tr.even.row_selected td {
+	background-color: #B0BED9;
+}
+
+table.DSOGrid tr.odd.row_selected td {
+	background-color: #9FAFD1;
+}
+
+/*
+ * Sorting classes for columns
+ */
+/* For the standard odd/even */
+tr.odd td.sorting_1 {
+	background-color: #dce1e7;
+}
+
+tr.odd td.sorting_2 {
+	background-color: #DADCFF;
+}
+
+tr.odd td.sorting_3 {
+	background-color: #E0E2FF;
+}
+
+tr.even td.sorting_1 {
+	background-color: #EAEBFF;
+}
+
+tr.even td.sorting_2 {
+	background-color: #F2F3FF;
+}
+
+tr.even td.sorting_3 {
+	background-color: #F9F9FF;
+}
+
+/*
+ * Namespace DTCR - "DataTables ColReorder" plug-in
+ */
+
+table.DTCR_clonedTable {
+	background-color: white;
+	z-index: 202;
+}
+
+div.DTCR_pointer {
+	width: 1px;
+	background-color: #0259C4;
+	z-index: 201;
+}
+
+body.alt div.DTCR_pointer {
+	margin-top: -15px;
+	margin-left: -9px;
+	width: 18px;
+	background: url('images/insert.png') no-repeat top left;
+}
+
+#popup_container {
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	min-width: 300px; /* Dialog will be no smaller than this */
+	max-width: 600px; /* Dialog will wrap after this width */
+	background: #FFF;
+	border: solid 5px #999;
+	color: #000;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/*jAlerts CSS*/
+#popup_title {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 1.75em;
+	color: #666;
+	background: #CCC url(images/title.gif) top repeat-x;
+	border: solid 1px #FFF;
+	border-bottom: solid 1px #999;
+	cursor: default;
+	padding: 0em;
+	margin: 0em;
+}
+
+#popup_content {
+	background: 16px 16px no-repeat url(images/info.gif);
+	padding: 1em 1.75em;
+	margin: 0em;
+}
+
+#popup_content.alert {
+	background-image: url(images/info.gif);
+}
+
+#popup_content.confirm {
+	background-image: url(images/important.gif);
+}
+
+#popup_content.prompt {
+	background-image: url(images/help.gif);
+}
+
+#popup_message {
+	padding-left: 48px;
+}
+
+#popup_panel {
+	text-align: center;
+	margin: 1em 0em 0em 1em;
+}
+
+#popup_prompt {
+	margin: .5em 0em;
+}
+
+#popup_overlay{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color:#777;
+    -moz-opacity:.50; 
+    filter:alpha(opacity=50); 
+    opacity:.50;
+}
+.contenidoTabla
+{
+	overflow-y: auto;
+	overflow-x: hidden;
+	height:400px;
+	max-height: 400px;
+}
+.TablaEdit, .TablaEdit .DSODropDownList
+{
+	width:100%;
+}
+.TablaEdit .DSOTextBox, .TablaEdit .DSOAutocomplete
+{
+	width:99%;
+}
+
+.TablaEdit .DSOTcLbl
+{
+	width:10%;
+}
+.DSOTcCtlMain
+{
+	width:45% !important;
+}
+.DSOTcCtlSub
+{
+	width:5% !important;
+}
+.pnlToolBar
+{
+	padding:5px 5px 5px 5px;
+	
+}
+
+.DSOTcLbl{
+	vertical-align:middle;
+	background-color:#4297d7;
+	color:White;
+	width:10%;
+}
+
+.DSOTcCtl .DSOExpandable .ui-widget-content{
+	width:100%;
+	overflow:auto;
+	margin: 0;
+	padding: 0;
+}
+
+.DSOTcCtl .DSOExpandable .DSOGrid{
+	width:100% !Important;
+}
+
+.DSOTextBox, .DSOAutocomplete{
+	width:99%;
+}
+
+.CnfgReportesEdit .DSOAutocomplete{
+	width:97%;
+}
+
+.CnfgReportesEdit .ColSpan1 .DSOAutocomplete{
+	width:90%;
+}
+
+textarea.DSOTextBox{
+	height:300px;
+}
+
+.DSODropDownList, .DSOCheckBoxListWrapper, .DSOFlags{
+	width:100%;
+}
+
+.DSOFlags td, .DSOCheckBoxList td{
+	vertical-align:top;
+}
+
+.RelEdit .DSOAutocomplete{
+    width:93%;
+}
+
+.RelEdit .ColSpan1 .DSOAutocomplete{
+	width:75%;
+}
+
+.RelEdit .ColSpan1, .HistoricEdit .ColSpan1{
+	width:40%;
+}
+
+.RelEdit .ColSpan3, .HistoricEdit .ColSpan3{
+	width:90%;
+}
+
+.DSONumberEdit{
+	text-align:right;
+}
+
+.MultiSelectWrapper .dataTables_wrapper, .CnfgReportesEdit .dataTables_wrapper, .CartasCustodiaEdit .dataTables_wrapper, .CnfgConsultasCartasCustodia .dataTables_wrapper, .CnfgEmpresasEdit .dataTables_wrapper{
+	min-height:100px;
+	_height:100px;
+}
+
+.MultiSelectWrapper .dataTables_scrollBody{
+	height:125px;
+}
+
+.MultiSelectWrapper .TdSelect{
+	text-align: center;
+}
+
+.MultiSelectWrapper .dataTables_length {
+	width: 60%;
+	float: left;
+}
+
+.MultiSelectWrapper .dataTables_filter {
+	width: 35%;
+	float: right;
+	text-align: right;
+	padding-right: 4px;
+}
+
+.PanelSubHistoricos .dataTables_scrollBody{
+	max-height: 400px;
+	_height: 400px;
+}
+
+.DSODropDownOpers{
+	width:40px;
+}
+
+.CnfgAlarmasEdit .ColSpan1 .DSOTextBox{
+	width:98%;
+}
+
+.CnfgAlarmasEdit .ColSpan3 .DSOTextBox{
+	width:99%;
+}
+
+.CnfgAlarmasEdit .ColSpan1 .DSOAutocomplete{
+	width:90%;
+}
+
+.EtiquetaEdit .buttonSave, .EtiquetaEdit .buttonBack, .EtiquetaEdit .buttonCancel{
+	float:left;
+}
+
+.EtiquetaEdit .btnDirPersonal, .EtiquetaEdit .btnDirCorporativo, .EtiquetaEdit .btnVerDetalle{
+	float:right;
+}
+
+
+/*  NZ 20150429 Se comento este estilo por que causa que las columnas se descuadren con los 
+renglones en la pantalla de Etiquetar Colaboradores.
+
+.EtiquetaEdit .DSOGrid{
+	width:100% !important;
+} */
+
+.DSOWindow .EtiquetaDetalle .dataTables_scrollBody{
+	max-height: 300px;
+	_height: 300px;
+}
+
+.DSOWindow .EtiquetaDetalle .DSOGrid{
+	width:100% !important;
+}

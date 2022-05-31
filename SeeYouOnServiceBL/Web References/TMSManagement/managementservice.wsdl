@@ -1,0 +1,1864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.tandberg.com/TMS/ManagementService/1.0/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.tandberg.com/TMS/ManagementService/1.0/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This is the TMS external management service.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.tandberg.com/TMS/ManagementService/1.0/">
+      <s:element name="GetTMSInformation">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTMSInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTMSInformationResult" type="tns:TMSInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TMSInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PreRegisterSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PreRegSystem" type="tns:PreRegisteredSystem" />
+            <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PreRegisteredSystem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IdentifierType" type="tns:SystemIdentifierType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:Location" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authentication" type="tns:Authentication" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="H323Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="E164Alias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TemplateSettings" type="tns:TemplateSettings" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SystemIdentifierType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="IPAddress" />
+          <s:enumeration value="HostName" />
+          <s:enumeration value="MACAddress" />
+          <s:enumeration value="SerialNumber" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Location">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ISDNZoneId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IPZoneId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeZoneId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Authentication">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TemplateSettings">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="KeepNamePersistent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="KeepE164AliasPersistent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="KeepH323IdPersistent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersistentTemplateId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartupTemplateId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PreRegisterSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PreRegisterSystemResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddSystem" type="tns:AddSystem" />
+            <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddSystem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:Location" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authentication" type="tns:Authentication" />
+          <s:element minOccurs="1" maxOccurs="1" name="UsageType" type="tns:SystemUsageType" />
+          <s:element minOccurs="1" maxOccurs="1" name="DiscoverNonSNMPSystems" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersistentTemplateId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SystemUsageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Other" />
+          <s:enumeration value="MeetingRoom" />
+          <s:enumeration value="PersonalOfficeSystem" />
+          <s:enumeration value="PersonalHomeSystem" />
+          <s:enumeration value="RollAbout" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AddSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddSystemResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NetworkIdentity" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSystemIdResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemResult" type="tns:ManagedSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ManagedSystem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="MacAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemType" type="tns:SystemType" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemCategory" type="tns:SystemCategory" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemTypeDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:Location" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authentication" type="tns:Authentication" />
+          <s:element minOccurs="0" maxOccurs="1" name="Authentication8021X" type="tns:Authentication8021X" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemCapabilites" type="tns:SystemCapabilites" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequestedGatekeeperAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActiveGatekeeperAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RequestedSIPServerAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ActiveSIPServerAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="H323Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="E164Alias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SIPUri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISDNNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DialinNumbers" type="tns:ArrayOfDialinNumber" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SystemType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Preregistered" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="Room" />
+          <s:enumeration value="DigitalCamera" />
+          <s:enumeration value="Projector" />
+          <s:enumeration value="DVDPlayer" />
+          <s:enumeration value="DocumentCamera" />
+          <s:enumeration value="VCR" />
+          <s:enumeration value="LapTop" />
+          <s:enumeration value="VideoCamera" />
+          <s:enumeration value="TandbergClassic" />
+          <s:enumeration value="TandbergMXP" />
+          <s:enumeration value="TandbergCiscoClassic" />
+          <s:enumeration value="TandbergCiscoMXP" />
+          <s:enumeration value="TandbergGateway" />
+          <s:enumeration value="TandbergVCS" />
+          <s:enumeration value="TandbergGatekeeper" />
+          <s:enumeration value="TandbergBorderController" />
+          <s:enumeration value="TandbergMPS" />
+          <s:enumeration value="TandbergMCU" />
+          <s:enumeration value="TandbergT3" />
+          <s:enumeration value="TandbergEntryPoint" />
+          <s:enumeration value="TandbergVideoPortal" />
+          <s:enumeration value="TandbergTelepresenceMCU" />
+          <s:enumeration value="TandbergContentServer" />
+          <s:enumeration value="TandbergComplianceAppliance" />
+          <s:enumeration value="TandbergCSeries" />
+          <s:enumeration value="TandbergE20" />
+          <s:enumeration value="Tandberg" />
+          <s:enumeration value="CodianMCU" />
+          <s:enumeration value="CodianIPGateway" />
+          <s:enumeration value="CodianISDNGateway" />
+          <s:enumeration value="CodianIPVCR" />
+          <s:enumeration value="CodianSupervisor" />
+          <s:enumeration value="CiscoCTS" />
+          <s:enumeration value="CiscoCUCM" />
+          <s:enumeration value="PolycomViewStation" />
+          <s:enumeration value="PolycomIPower" />
+          <s:enumeration value="PolycomViaVideo" />
+          <s:enumeration value="PolycomVSX" />
+          <s:enumeration value="PolycomHDX" />
+          <s:enumeration value="PolycomMGC" />
+          <s:enumeration value="Sony" />
+          <s:enumeration value="Aethra" />
+          <s:enumeration value="CiscoGatekeeper" />
+          <s:enumeration value="CiscoMCU" />
+          <s:enumeration value="RadvisionGateway" />
+          <s:enumeration value="RadvisionGatekeeper" />
+          <s:enumeration value="RadvisionMCU" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SystemCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="EndPoint" />
+          <s:enumeration value="MCU" />
+          <s:enumeration value="Gateway" />
+          <s:enumeration value="Gatekeeper" />
+          <s:enumeration value="Room" />
+          <s:enumeration value="IPTelephone" />
+          <s:enumeration value="BorderController" />
+          <s:enumeration value="Equipment" />
+          <s:enumeration value="Recording" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="VideoServer" />
+          <s:enumeration value="ThreeGMCU" />
+          <s:enumeration value="Supervisor" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Authentication8021X">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Enabled" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Status">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SystemStatus" type="tns:SystemStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConnectionStatus" type="tns:ConnectionStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SystemStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="Idle" />
+          <s:enumeration value="InCall" />
+          <s:enumeration value="Alive" />
+          <s:enumeration value="NoResponse" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ConnectionStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="WrongUsernamePassword" />
+          <s:enumeration value="PasswordMissing" />
+          <s:enumeration value="WrongAdminPassword" />
+          <s:enumeration value="AdminPasswordMissing" />
+          <s:enumeration value="NoSNMPResponse" />
+          <s:enumeration value="NoHTTPResponse" />
+          <s:enumeration value="NoPingResponse" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="RemoteAdminNotActivated" />
+          <s:enumeration value="NoTelnetResponse" />
+          <s:enumeration value="WrongSNMPSetCommunityName" />
+          <s:enumeration value="TMSAccordWebServerServiceNotResponding" />
+          <s:enumeration value="Unactivated" />
+          <s:enumeration value="SystemIsUpgrading" />
+          <s:enumeration value="UsernameMissing" />
+          <s:enumeration value="NetworkAddressMissing" />
+          <s:enumeration value="Inaccessible" />
+          <s:enumeration value="NoHTTPSResponse" />
+          <s:enumeration value="CertificateValidationError" />
+          <s:enumeration value="NotRegisteredWithCucm" />
+          <s:enumeration value="SupervisorSystemNotAvailable" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SystemCapabilites">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SupportsBackup" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SupportsTemplates" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SupportsRestart" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="SupportsIEEE8021x" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDialinNumber">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DialinNumber" nillable="true" type="tns:DialinNumber" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DialinNumber">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="H323Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="E164Alias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SIPUri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISDNNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllSystems">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllSystemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSystemsResult" type="tns:ArrayOfManagedSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfManagedSystem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ManagedSystem" nillable="true" type="tns:ManagedSystem" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="System" type="tns:ManagedSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PurgeSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PurgeSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RefreshSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefreshSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTimeZones">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTimeZonesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTimeZonesResult" type="tns:ArrayOfTimeZone" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTimeZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TimeZone" nillable="true" type="tns:TimeZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeZone">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetISDNZones">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetISDNZonesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetISDNZonesResult" type="tns:ArrayOfISDNZone" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfISDNZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ISDNZone" nillable="true" type="tns:ISDNZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ISDNZone">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetIPZones">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetIPZonesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIPZonesResult" type="tns:ArrayOfIPZone" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfIPZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="IPZone" nillable="true" type="tns:IPZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IPZone">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFolderTree">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IncludeSystems" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderTreeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFolderTreeResult" type="tns:FolderTree" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FolderTree">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Root" type="tns:Folder" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Folder">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfFolder" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemsInFolder" type="tns:ArrayOfManagedSystem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFolder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Folder" nillable="true" type="tns:Folder" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteSystemFromFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSystemFromFolderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="IncludeSystems" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="Recursive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFolderResult" type="tns:Folder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemsInFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="Recursive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemsInFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemsInFolderResult" type="tns:ArrayOfManagedSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemDiagnosticsMessagesForSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemDiagnosticsMessagesForSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemDiagnosticsMessagesForSystemResult" type="tns:ArrayOfSystemDiagnosticsMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSystemDiagnosticsMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SystemDiagnosticsMessage" nillable="true" type="tns:SystemDiagnosticsMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SystemDiagnosticsMessage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecificDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HowToFixDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageStatus" type="tns:SystemDiagnosticsMessageStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorLevel" type="tns:SystemDiagnosticsMessageErrorLevel" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageType" type="tns:SystemDiagnosticsMessageType" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstReported" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastReported" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SystemDiagnosticsMessageStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Open" />
+          <s:enumeration value="Fixed" />
+          <s:enumeration value="Acknowledged" />
+          <s:enumeration value="Invalidated" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SystemDiagnosticsMessageErrorLevel">
+        <s:restriction base="s:string">
+          <s:enumeration value="Indeterminate" />
+          <s:enumeration value="Critical" />
+          <s:enumeration value="Major" />
+          <s:enumeration value="Minor" />
+          <s:enumeration value="Warning" />
+          <s:enumeration value="Cleared" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SystemDiagnosticsMessageType">
+        <s:restriction base="s:string">
+          <s:enumeration value="GatekeeperConfigurationError" />
+          <s:enumeration value="GatekeeperRegistrationFailure" />
+          <s:enumeration value="LowBatteryOnRemoteControl" />
+          <s:enumeration value="IncorrectSNMPTraphost" />
+          <s:enumeration value="IncorrectManagementAddressURL" />
+          <s:enumeration value="BlankSystemName" />
+          <s:enumeration value="IncorrectSNMPCommunityName" />
+          <s:enumeration value="ISDNZoneNotSet" />
+          <s:enumeration value="IPZoneNotSet" />
+          <s:enumeration value="TimeZoneNotSet" />
+          <s:enumeration value="ISDNNumberError_AcceptsISDNCallsButNoBandwidth" />
+          <s:enumeration value="IPNumberError_AcceptsIPCallsButNoBandwidth" />
+          <s:enumeration value="E164AliasError_MissingAlias" />
+          <s:enumeration value="ISDNNumberError_HasNumberButNoBandwidth" />
+          <s:enumeration value="BandwidthError" />
+          <s:enumeration value="SchedulingError" />
+          <s:enumeration value="FTPConfigurationError" />
+          <s:enumeration value="HTTPError" />
+          <s:enumeration value="ISDNConfigurationError" />
+          <s:enumeration value="NoTMSVSServices" />
+          <s:enumeration value="NoTMSCPServices" />
+          <s:enumeration value="NoTMSECPServices" />
+          <s:enumeration value="LowMaxParticipantsOnService" />
+          <s:enumeration value="PersistentNameNotSameAsNameOnSystem" />
+          <s:enumeration value="AutoAnswerOff" />
+          <s:enumeration value="GatekeeperModeOff" />
+          <s:enumeration value="ActiveGatekeeperAddressBlank" />
+          <s:enumeration value="SoftwareVersionIncompatible" />
+          <s:enumeration value="NoPortsDefinedOnSystem" />
+          <s:enumeration value="NoSystemContactAssigned" />
+          <s:enumeration value="ISDNNumberError_HasBandwidthButNoNumber" />
+          <s:enumeration value="SIPServerRegistrationFailure" />
+          <s:enumeration value="TMSConnectionError" />
+          <s:enumeration value="UserDefinedCriticalError" />
+          <s:enumeration value="UserDefinedMajorError" />
+          <s:enumeration value="UserDefinedMinorError" />
+          <s:enumeration value="UserDefinedWarningError" />
+          <s:enumeration value="LowDiskspaceOnTMSWebServer" />
+          <s:enumeration value="LowDiskspaceOnTMSDatabaseServer" />
+          <s:enumeration value="TMSServiceNotRunning" />
+          <s:enumeration value="PendingConfiguratonChangesForSystem" />
+          <s:enumeration value="E164AliasError_HasNumberButNoBandwidth" />
+          <s:enumeration value="TimeZonesAreDifferent" />
+          <s:enumeration value="LowDiskspaceOnSystem" />
+          <s:enumeration value="PortCountExceedsLicense" />
+          <s:enumeration value="NoTMSTranscodingLinesDefined" />
+          <s:enumeration value="NoTMSArchivingLinesDefined" />
+          <s:enumeration value="IncorrectUserNamePassword" />
+          <s:enumeration value="E164AliasError_GatekeeperRegistrationProblem" />
+          <s:enumeration value="SystemSettingsNotFound" />
+          <s:enumeration value="GatekeeperIdRegistrationOff" />
+          <s:enumeration value="NewSoftwareAvailable" />
+          <s:enumeration value="ServiceContractExpired" />
+          <s:enumeration value="ServiceContractExpiring" />
+          <s:enumeration value="NoServiceContract" />
+          <s:enumeration value="HTTPSConnectionError" />
+          <s:enumeration value="SIPRegistrationProblem" />
+          <s:enumeration value="CertificateValidationError" />
+          <s:enumeration value="ClusterSoftwareVersionsDiffer" />
+          <s:enumeration value="ClusterProvisioningNotEnabled" />
+          <s:enumeration value="ClusterProvisioningVersionsDiffer" />
+          <s:enumeration value="ClusterAlternatesDiffer" />
+          <s:enumeration value="ClusterConfigDiffer" />
+          <s:enumeration value="ClusterMissingOptionKeys" />
+          <s:enumeration value="NewPCClientVersionAvailable" />
+          <s:enumeration value="UnableToCommunicateWithProvisioningService" />
+          <s:enumeration value="ClusterNTPServerNotSet" />
+          <s:enumeration value="UnableToCommunicateWithRemoteTMSAgent" />
+          <s:enumeration value="SystemMustBeRestarted" />
+          <s:enumeration value="ClusterMasterAddressIsWrong" />
+          <s:enumeration value="TMSAgentAvailableSystemLicensesWarning" />
+          <s:enumeration value="TMSAgentNoAvailableSystemLicenses" />
+          <s:enumeration value="TMSAgentNoAvailableMoviLicenses" />
+          <s:enumeration value="TMSAgentAvailableMoviLicensesWarning" />
+          <s:enumeration value="ApproachedLicensedLimit" />
+          <s:enumeration value="ProvisioningModeIsWrong" />
+          <s:enumeration value="MCUPrefixConfigurationInvalid" />
+          <s:enumeration value="CustomTicketCritical" />
+          <s:enumeration value="CustomTicketMajor" />
+          <s:enumeration value="CustomTicketMinor" />
+          <s:enumeration value="CustomTicketWarning" />
+          <s:enumeration value="PersistentSettingMismatch" />
+          <s:enumeration value="H323Error_MissingNumber" />
+          <s:enumeration value="H323Error_HasNumberButNoBandwidth" />
+          <s:enumeration value="NetworkError_DHCPAndTrackedByIPAddress" />
+          <s:enumeration value="LocalTMSAgentDiagnosticsCriticalFailure" />
+          <s:enumeration value="LocalTMSAgentDiagnosticsWarningFailure" />
+          <s:enumeration value="VcsTMSAgentDiagnosticsCriticalFailure" />
+          <s:enumeration value="VcsTMSAgentDiagnosticsWarningFailure" />
+          <s:enumeration value="HostNameMismatch" />
+          <s:enumeration value="ServerTimeMismatch" />
+          <s:enumeration value="ConferenceFactoryManagedMCUNotInTMS" />
+          <s:enumeration value="NotRegisteredWithCucm" />
+          <s:enumeration value="SupervisorSystemNotAvailable" />
+          <s:enumeration value="SshPasswordExpiryEnabled" />
+          <s:enumeration value="CucmTimeOffByMoreThanThreshold" />
+          <s:enumeration value="NativeInteropEnabledButSIPDomainNameNotSet" />
+          <s:enumeration value="TMSAgentNoAvailableProvisioningLicenses" />
+          <s:enumeration value="TMSAgentAvailableProvisioningLicensesWarning" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetAllSystemsDiagnosticsMessages">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MessageLevels" type="tns:ArrayOfSystemDiagnosticsMessageErrorLevel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSystemDiagnosticsMessageErrorLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SystemDiagnosticsMessageErrorLevel" type="tns:SystemDiagnosticsMessageErrorLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAllSystemsDiagnosticsMessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSystemsDiagnosticsMessagesResult" type="tns:ArrayOfSystemDiagnosticsMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemDiagnosticsMessagesForSystems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemIds" type="tns:ArrayOfLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageLevels" type="tns:ArrayOfSystemDiagnosticsMessageErrorLevel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSystemDiagnosticsMessagesForSystemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemDiagnosticsMessagesForSystemsResult" type="tns:ArrayOfSystemDiagnosticsMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemDiagnosticsMessagesForFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FolderId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="Recursive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="MessageLevels" type="tns:ArrayOfSystemDiagnosticsMessageErrorLevel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemDiagnosticsMessagesForFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemDiagnosticsMessagesForFolderResult" type="tns:ArrayOfSystemDiagnosticsMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTMSDiagnosticsMessages">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTMSDiagnosticsMessagesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTMSDiagnosticsMessagesResult" type="tns:ArrayOfTMSDiagnosticsMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTMSDiagnosticsMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TMSDiagnosticsMessage" nillable="true" type="tns:TMSDiagnosticsMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TMSDiagnosticsMessage">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="GeneralDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecificDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HowToFixDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageStatus" type="tns:SystemDiagnosticsMessageStatus" />
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorLevel" type="tns:SystemDiagnosticsMessageErrorLevel" />
+          <s:element minOccurs="1" maxOccurs="1" name="MessageType" type="tns:SystemDiagnosticsMessageType" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstReported" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastReported" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTemplates">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTemplatesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTemplatesResult" type="tns:ArrayOfTemplate" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTemplate">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Template" nillable="true" type="tns:Template" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Template">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ApplyTemplateToSystems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TemplateId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SystemIds" type="tns:ArrayOfLong" />
+            <s:element minOccurs="1" maxOccurs="1" name="Persistent" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplyTemplateToSystemsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemovePersistentTemplateFromSystems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemIds" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemovePersistentTemplateFromSystemsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPersistentSystemSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersistentSystemSettingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersistentSystemSettingsResult" type="tns:PersistentSystemSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PersistentSystemSettings">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="H323Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="E164Alias" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersistentTemplateId" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SIPURI" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdatePersistentSystemSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="Settings" type="tns:PersistentSystemSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdatePersistentSystemSettingsResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBackupStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBackupStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetBackupStatusResult" nillable="true" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSystemBackupAsBackgroundActivity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemIds" type="tns:ArrayOfLong" />
+            <s:element minOccurs="1" maxOccurs="1" name="SendFailureEvent" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="SendSuccessEvent" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSystemBackupAsBackgroundActivityResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PerformSystemRestoreAsBackgroundActivity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemIds" type="tns:ArrayOfLong" />
+            <s:element minOccurs="1" maxOccurs="1" name="SendFailureEvent" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="SendSuccessEvent" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSystemRestoreAsBackgroundActivityResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PerformSystemBackup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSystemBackupResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PerformSystemRestore">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PerformSystemRestoreResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPrimarySystemByUsername">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPrimarySystemByUsernameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPrimarySystemByUsernameResult" type="tns:ManagedSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RestartSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RestartSystemResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTMSInformationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTMSInformation" />
+  </wsdl:message>
+  <wsdl:message name="GetTMSInformationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTMSInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreRegisterSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:PreRegisterSystem" />
+  </wsdl:message>
+  <wsdl:message name="PreRegisterSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:PreRegisterSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSystem" />
+  </wsdl:message>
+  <wsdl:message name="AddSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemId" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSystemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllSystems" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSystemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllSystemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSystem" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="PurgeSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:PurgeSystem" />
+  </wsdl:message>
+  <wsdl:message name="PurgeSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:PurgeSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefreshSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:RefreshSystem" />
+  </wsdl:message>
+  <wsdl:message name="RefreshSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:RefreshSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZonesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimeZones" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeZonesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimeZonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetISDNZonesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetISDNZones" />
+  </wsdl:message>
+  <wsdl:message name="GetISDNZonesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetISDNZonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIPZonesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIPZones" />
+  </wsdl:message>
+  <wsdl:message name="GetIPZonesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIPZonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderTreeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFolderTree" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderTreeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFolderTreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSystemFromFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSystemFromFolder" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSystemFromFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSystemFromFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFolder" />
+  </wsdl:message>
+  <wsdl:message name="GetFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsInFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemsInFolder" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsInFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemsInFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemDiagnosticsMessagesForSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemDiagnosticsMessagesForSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemDiagnosticsMessagesForSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemDiagnosticsMessagesForSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSystemsDiagnosticsMessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllSystemsDiagnosticsMessages" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSystemsDiagnosticsMessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllSystemsDiagnosticsMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemDiagnosticsMessagesForSystemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemDiagnosticsMessagesForSystems" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemDiagnosticsMessagesForSystemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemDiagnosticsMessagesForSystemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemDiagnosticsMessagesForFolderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemDiagnosticsMessagesForFolder" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemDiagnosticsMessagesForFolderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemDiagnosticsMessagesForFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTMSDiagnosticsMessagesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTMSDiagnosticsMessages" />
+  </wsdl:message>
+  <wsdl:message name="GetTMSDiagnosticsMessagesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTMSDiagnosticsMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplatesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTemplates" />
+  </wsdl:message>
+  <wsdl:message name="GetTemplatesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTemplatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApplyTemplateToSystemsSoapIn">
+    <wsdl:part name="parameters" element="tns:ApplyTemplateToSystems" />
+  </wsdl:message>
+  <wsdl:message name="ApplyTemplateToSystemsSoapOut">
+    <wsdl:part name="parameters" element="tns:ApplyTemplateToSystemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemovePersistentTemplateFromSystemsSoapIn">
+    <wsdl:part name="parameters" element="tns:RemovePersistentTemplateFromSystems" />
+  </wsdl:message>
+  <wsdl:message name="RemovePersistentTemplateFromSystemsSoapOut">
+    <wsdl:part name="parameters" element="tns:RemovePersistentTemplateFromSystemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersistentSystemSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPersistentSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="GetPersistentSystemSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersistentSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersistentSystemSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePersistentSystemSettings" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePersistentSystemSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePersistentSystemSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBackupStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBackupStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetBackupStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBackupStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemBackupAsBackgroundActivitySoapIn">
+    <wsdl:part name="parameters" element="tns:PerformSystemBackupAsBackgroundActivity" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemBackupAsBackgroundActivitySoapOut">
+    <wsdl:part name="parameters" element="tns:PerformSystemBackupAsBackgroundActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemRestoreAsBackgroundActivitySoapIn">
+    <wsdl:part name="parameters" element="tns:PerformSystemRestoreAsBackgroundActivity" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemRestoreAsBackgroundActivitySoapOut">
+    <wsdl:part name="parameters" element="tns:PerformSystemRestoreAsBackgroundActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemBackupSoapIn">
+    <wsdl:part name="parameters" element="tns:PerformSystemBackup" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemBackupSoapOut">
+    <wsdl:part name="parameters" element="tns:PerformSystemBackupResponse" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemRestoreSoapIn">
+    <wsdl:part name="parameters" element="tns:PerformSystemRestore" />
+  </wsdl:message>
+  <wsdl:message name="PerformSystemRestoreSoapOut">
+    <wsdl:part name="parameters" element="tns:PerformSystemRestoreResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPrimarySystemByUsernameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPrimarySystemByUsername" />
+  </wsdl:message>
+  <wsdl:message name="GetPrimarySystemByUsernameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPrimarySystemByUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="RestartSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:RestartSystem" />
+  </wsdl:message>
+  <wsdl:message name="RestartSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:RestartSystemResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ManagementServiceSoap">
+    <wsdl:operation name="GetTMSInformation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns information about this TMS server.</wsdl:documentation>
+      <wsdl:input message="tns:GetTMSInformationSoapIn" />
+      <wsdl:output message="tns:GetTMSInformationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreRegisterSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Preregister a system in TMS. Returns the system id.</wsdl:documentation>
+      <wsdl:input message="tns:PreRegisterSystemSoapIn" />
+      <wsdl:output message="tns:PreRegisterSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add a system to TMS. Returns the system id.</wsdl:documentation>
+      <wsdl:input message="tns:AddSystemSoapIn" />
+      <wsdl:output message="tns:AddSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Resolve a SystemID from hostname, IP address or MAC address</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemIdSoapIn" />
+      <wsdl:output message="tns:GetSystemIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a system.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemSoapIn" />
+      <wsdl:output message="tns:GetSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get information for all systems.</wsdl:documentation>
+      <wsdl:input message="tns:GetAllSystemsSoapIn" />
+      <wsdl:output message="tns:GetAllSystemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update an system.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateSystemSoapIn" />
+      <wsdl:output message="tns:UpdateSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PurgeSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Permanently deletes a system from TMS.</wsdl:documentation>
+      <wsdl:input message="tns:PurgeSystemSoapIn" />
+      <wsdl:output message="tns:PurgeSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Refresh a system. TMS will contact the system, read new/changed settings and update the system status information.</wsdl:documentation>
+      <wsdl:input message="tns:RefreshSystemSoapIn" />
+      <wsdl:output message="tns:RefreshSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve all the time zones.</wsdl:documentation>
+      <wsdl:input message="tns:GetTimeZonesSoapIn" />
+      <wsdl:output message="tns:GetTimeZonesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetISDNZones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve all the ISDN zones.</wsdl:documentation>
+      <wsdl:input message="tns:GetISDNZonesSoapIn" />
+      <wsdl:output message="tns:GetISDNZonesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIPZones">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve all the IP zones.</wsdl:documentation>
+      <wsdl:input message="tns:GetIPZonesSoapIn" />
+      <wsdl:output message="tns:GetIPZonesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderTree">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the system folder tree structure. Set the IncludeSystems flag if you also want the systems included in the folders.</wsdl:documentation>
+      <wsdl:input message="tns:GetFolderTreeSoapIn" />
+      <wsdl:output message="tns:GetFolderTreeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSystemFromFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a system from a given folder</wsdl:documentation>
+      <wsdl:input message="tns:DeleteSystemFromFolderSoapIn" />
+      <wsdl:output message="tns:DeleteSystemFromFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the folder matching a given id. Set the IncludeSystems flag if you also want the systems included in the folder.</wsdl:documentation>
+      <wsdl:input message="tns:GetFolderSoapIn" />
+      <wsdl:output message="tns:GetFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsInFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all the systems in a folder. Set the Recursive flag if you want to include systems in subfolders.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemsInFolderSoapIn" />
+      <wsdl:output message="tns:GetSystemsInFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the system diagnostics messages / system tickets for a given system</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemDiagnosticsMessagesForSystemSoapIn" />
+      <wsdl:output message="tns:GetSystemDiagnosticsMessagesForSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSystemsDiagnosticsMessages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the system diagnostics messages / system tickets for all systems filtered by message severty level. An empty list will return all errors. (Note: Excludes tickets set to Indeterminate, as these are not errors)</wsdl:documentation>
+      <wsdl:input message="tns:GetAllSystemsDiagnosticsMessagesSoapIn" />
+      <wsdl:output message="tns:GetAllSystemsDiagnosticsMessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the system diagnostics messages / system tickets for a list of systems filtered by message severty level. An empty list will return all errors. (Note: Excludes tickets set to Indeterminate, as these are not errors)</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemDiagnosticsMessagesForSystemsSoapIn" />
+      <wsdl:output message="tns:GetSystemDiagnosticsMessagesForSystemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForFolder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the system diagnostics messages / system tickets for a folder filtered by message severty. An empty list will return all errors. Recursive query is optional. (Note: Excludes tickets set to Indeterminate, as these are not errors)</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemDiagnosticsMessagesForFolderSoapIn" />
+      <wsdl:output message="tns:GetSystemDiagnosticsMessagesForFolderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTMSDiagnosticsMessages">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the TMS spesific diagnostics messages.</wsdl:documentation>
+      <wsdl:input message="tns:GetTMSDiagnosticsMessagesSoapIn" />
+      <wsdl:output message="tns:GetTMSDiagnosticsMessagesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all system templates.</wsdl:documentation>
+      <wsdl:input message="tns:GetTemplatesSoapIn" />
+      <wsdl:output message="tns:GetTemplatesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApplyTemplateToSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Apply a given template to a set of systems. The Persistent flag controls if it is applied once (false) or set as a persistent template (true).</wsdl:documentation>
+      <wsdl:input message="tns:ApplyTemplateToSystemsSoapIn" />
+      <wsdl:output message="tns:ApplyTemplateToSystemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePersistentTemplateFromSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove the persistent template from one or many systems.</wsdl:documentation>
+      <wsdl:input message="tns:RemovePersistentTemplateFromSystemsSoapIn" />
+      <wsdl:output message="tns:RemovePersistentTemplateFromSystemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersistentSystemSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get persistent settings for a system. Null entries means setting is not supported. Empty string/-1 means not set.</wsdl:documentation>
+      <wsdl:input message="tns:GetPersistentSystemSettingsSoapIn" />
+      <wsdl:output message="tns:GetPersistentSystemSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersistentSystemSettings">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set persistent settings for a system. Use a TemplateId of -1 to unset. Entries set to null will skipped. Attempting to set an unsupported setting will be silently ignored.</wsdl:documentation>
+      <wsdl:input message="tns:UpdatePersistentSystemSettingsSoapIn" />
+      <wsdl:output message="tns:UpdatePersistentSystemSettingsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBackupStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns timestamp of last system configuration backup, or null if no backup exists for this system</wsdl:documentation>
+      <wsdl:input message="tns:GetBackupStatusSoapIn" />
+      <wsdl:output message="tns:GetBackupStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemBackupAsBackgroundActivity">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Performs a configuration backup on a list of systems asynchronously. Sending e-mail on backup complete and/or failure is also supported.</wsdl:documentation>
+      <wsdl:input message="tns:PerformSystemBackupAsBackgroundActivitySoapIn" />
+      <wsdl:output message="tns:PerformSystemBackupAsBackgroundActivitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemRestoreAsBackgroundActivity">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Performs a configuration restore on a list of systems asynchronously. Sending e-mail on restore complete and/or failure is also supported.</wsdl:documentation>
+      <wsdl:input message="tns:PerformSystemRestoreAsBackgroundActivitySoapIn" />
+      <wsdl:output message="tns:PerformSystemRestoreAsBackgroundActivitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemBackup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Performs a configuration backup on a given system synchronously. The backup will not be logged in the backup activity log.</wsdl:documentation>
+      <wsdl:input message="tns:PerformSystemBackupSoapIn" />
+      <wsdl:output message="tns:PerformSystemBackupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemRestore">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Performs a configuration restore on a given system synchronously. The restore will not be logged in the backup activity log.</wsdl:documentation>
+      <wsdl:input message="tns:PerformSystemRestoreSoapIn" />
+      <wsdl:output message="tns:PerformSystemRestoreSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimarySystemByUsername">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the primary system (if any) for the given user.</wsdl:documentation>
+      <wsdl:input message="tns:GetPrimarySystemByUsernameSoapIn" />
+      <wsdl:output message="tns:GetPrimarySystemByUsernameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RestartSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Restarts a system, if supported.</wsdl:documentation>
+      <wsdl:input message="tns:RestartSystemSoapIn" />
+      <wsdl:output message="tns:RestartSystemSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManagementServiceSoap" type="tns:ManagementServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTMSInformation">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTMSInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreRegisterSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PreRegisterSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/AddSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemId">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSystems">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetAllSystems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/UpdateSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurgeSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PurgeSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/RefreshSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTimeZones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetISDNZones">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetISDNZones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIPZones">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetIPZones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderTree">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetFolderTree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSystemFromFolder">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/DeleteSystemFromFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolder">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsInFolder">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemsInFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemDiagnosticsMessagesForSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSystemsDiagnosticsMessages">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetAllSystemsDiagnosticsMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForSystems">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemDiagnosticsMessagesForSystems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForFolder">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemDiagnosticsMessagesForFolder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTMSDiagnosticsMessages">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTMSDiagnosticsMessages" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTemplates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyTemplateToSystems">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/ApplyTemplateToSystems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePersistentTemplateFromSystems">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/RemovePersistentTemplateFromSystems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersistentSystemSettings">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetPersistentSystemSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersistentSystemSettings">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/UpdatePersistentSystemSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBackupStatus">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetBackupStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemBackupAsBackgroundActivity">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemBackupAsBackgroundActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemRestoreAsBackgroundActivity">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemRestoreAsBackgroundActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemBackup">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemBackup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemRestore">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemRestore" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimarySystemByUsername">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetPrimarySystemByUsername" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestartSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/RestartSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManagementServiceSoap12" type="tns:ManagementServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTMSInformation">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTMSInformation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreRegisterSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PreRegisterSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/AddSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemId">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSystems">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetAllSystems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/UpdateSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PurgeSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PurgeSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/RefreshSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeZones">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTimeZones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetISDNZones">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetISDNZones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIPZones">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetIPZones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolderTree">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetFolderTree" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSystemFromFolder">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/DeleteSystemFromFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFolder">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsInFolder">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemsInFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemDiagnosticsMessagesForSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSystemsDiagnosticsMessages">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetAllSystemsDiagnosticsMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForSystems">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemDiagnosticsMessagesForSystems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemDiagnosticsMessagesForFolder">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetSystemDiagnosticsMessagesForFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTMSDiagnosticsMessages">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTMSDiagnosticsMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTemplates">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetTemplates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplyTemplateToSystems">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/ApplyTemplateToSystems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePersistentTemplateFromSystems">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/RemovePersistentTemplateFromSystems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersistentSystemSettings">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetPersistentSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePersistentSystemSettings">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/UpdatePersistentSystemSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBackupStatus">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetBackupStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemBackupAsBackgroundActivity">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemBackupAsBackgroundActivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemRestoreAsBackgroundActivity">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemRestoreAsBackgroundActivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemBackup">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemBackup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerformSystemRestore">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/PerformSystemRestore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrimarySystemByUsername">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/GetPrimarySystemByUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RestartSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/ManagementService/1.0/RestartSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManagementService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This is the TMS external management service.</wsdl:documentation>
+    <wsdl:port name="ManagementServiceSoap" binding="tns:ManagementServiceSoap">
+      <soap:address location="http://dsoserver:82/tms/external/management/managementservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManagementServiceSoap12" binding="tns:ManagementServiceSoap12">
+      <soap12:address location="http://dsoserver:82/tms/external/management/managementservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

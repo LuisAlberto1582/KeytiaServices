@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SeeYouOnServiceBL.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SeeYouOnServiceBL_TMSBooking_BookingService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://dsoserver:82/tms/external/Booking/BookingService.asmx</Value>
+    </Setting>
+    <Setting Name="SeeYouOnServiceBL_TMSRemoteSetup_RemoteSetupService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://dsoserver:82/tms/external/Booking/RemoteSetup/RemoteSetupService.asmx</Value>
+    </Setting>
+    <Setting Name="SeeYouOnServiceBL_TMSManagement_ManagementService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://dsoserver:82/tms/external/management/managementservice.asmx</Value>
+    </Setting>
+    <Setting Name="SeeYouOnServiceBL_TMSPhoneBook_PhoneBookService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://dsoserver:82/tms/external/phonebook/phonebookservice.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

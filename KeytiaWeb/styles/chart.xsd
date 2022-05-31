@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:mstns="http://tempuri.org/chart.xsd" xmlns="http://tempuri.org/chart.xsd" elementFormDefault="qualified" targetNamespace="http://tempuri.org/chart.xsd" id="Chart" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Chart">
+    <xs:complexType>
+      <xs:all>
+        <xs:element minOccurs="0" name="Palette" type="mstns:tPalette" />
+        <xs:element minOccurs="0" name="Area3D" type="mstns:tArea3D" />
+        <xs:element minOccurs="0" name="TitleFont" type="mstns:tFont" />
+        <xs:element minOccurs="0" name="XTitleFont" type="mstns:tFont" />
+        <xs:element minOccurs="0" name="YTitleFont" type="mstns:tFont" />
+        <xs:element minOccurs="0" name="LabelFont" type="mstns:tFont" />
+        <xs:element minOccurs="0" name="ChartArea" type="mstns:tChartType" />
+        <xs:element minOccurs="0" name="ChartColumn" type="mstns:tChartType" />
+        <xs:element minOccurs="0" name="ChartLine" type="mstns:tChartType" />
+        <xs:element minOccurs="0" name="ChartPie" type="mstns:tChartType" />
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="tChartType">
+    <xs:all>
+      <xs:element minOccurs="0" name="Palette" type="mstns:tPalette" />
+      <xs:element minOccurs="0" name="Area3D" type="mstns:tArea3D" />
+      <xs:element minOccurs="0" name="TitleFont" type="mstns:tFont" />
+      <xs:element minOccurs="0" name="XTitleFont" type="mstns:tFont" />
+      <xs:element minOccurs="0" name="YTitleFont" type="mstns:tFont" />
+      <xs:element minOccurs="0" name="LabelFont" type="mstns:tFont" />
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="tPalette">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="Color">
+        <xs:complexType>
+          <xs:attribute name="value" type="xs:string" use="required" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name" type="mstns:tPaletteName" use="required" />
+  </xs:complexType>
+  <xs:complexType name="tArea3D">
+    <xs:attribute name="inclination" type="xs:int" />
+    <xs:attribute name="rotation" type="xs:int" />
+    <xs:attribute name="enabled" type="xs:boolean" use="required" />
+  </xs:complexType>
+  <xs:complexType name="tFont">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="size" type="xs:float" />
+    <xs:attribute name="style" type="mstns:tFontStyle" />
+    <xs:attribute name="color" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="tPaletteName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Berry" />
+      <xs:enumeration value="Bright" />
+      <xs:enumeration value="BrightPastel" />
+      <xs:enumeration value="Chocolate" />
+      <xs:enumeration value="EarthTones" />
+      <xs:enumeration value="Excel" />
+      <xs:enumeration value="Fire" />
+      <xs:enumeration value="Grayscale" />
+      <xs:enumeration value="Light" />
+      <xs:enumeration value="Pastel" />
+      <xs:enumeration value="SeaGreen" />
+      <xs:enumeration value="SemiTransparent" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tFontStyle">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Bold" />
+      <xs:enumeration value="Italic" />
+      <xs:enumeration value="Underline" />
+      <xs:enumeration value="Bold+Italic" />
+      <xs:enumeration value="Bold+Underline" />
+      <xs:enumeration value="Italic+Underline" />
+      <xs:enumeration value="Bold+Italic+Underline" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

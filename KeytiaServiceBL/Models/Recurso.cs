@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace KeytiaServiceBL.Models
+{
+    public class Recurso : HistoricoBase
+    {
+        public int Entidad { get; set; }
+        public int Aplic { get; set; }
+        public int Carrier { get; set; }
+    }
+}

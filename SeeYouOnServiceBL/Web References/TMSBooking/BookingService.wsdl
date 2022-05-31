@@ -1,0 +1,1474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tandberg.net/2004/02/tms/external/booking/" xmlns:s1="http://tandberg.net/2004/02/tms/external/booking/AbstractTypes" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tandberg.net/2004/02/tms/external/booking/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get and set conferences.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tandberg.net/2004/02/tms/external/booking/">
+      <s:element name="GetConferencesForSystems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="SystemIds" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ConferenceStatus" type="tns:ConferenceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ConferenceStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="AllExceptDeleted" />
+          <s:enumeration value="Pending" />
+          <s:enumeration value="Ongoing" />
+          <s:enumeration value="Finished" />
+          <s:enumeration value="PendingAndOngoing" />
+          <s:enumeration value="MeetingRequest" />
+          <s:enumeration value="Rejected" />
+          <s:enumeration value="Finished" />
+          <s:enumeration value="Deleted" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetConferencesForSystemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConferencesForSystemsResult" type="tns:ArrayOfConference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfConference">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Conference" nillable="true" type="tns:Conference" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Conference">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ConferenceId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartTimeUTC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTimeUTC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecurrenceInstanceIdUTC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecurrenceInstanceType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstOccurrenceRecInstanceIdUTC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecurrencePattern" type="tns:RecurrencePattern" />
+          <s:element minOccurs="1" maxOccurs="1" name="OwnerId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerUserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerFirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerLastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerEmailAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConferenceType" type="tns:ConferenceType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bandwidth" type="tns:Bandwidth" />
+          <s:element minOccurs="1" maxOccurs="1" name="PictureMode" type="tns:PictureMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="Encrypted" type="tns:EncryptionRequested" />
+          <s:element minOccurs="1" maxOccurs="1" name="DataConference" type="tns:DataConferenceMode" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShowExtendOption" type="tns:ExtendOptionRequested" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillingCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ISDNRestrict" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConferenceInfoText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConferenceInfoHtml" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserMessageText" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalSourceId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExternalPrimaryKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Participants" type="tns:ArrayOfParticipant" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordedConferenceUri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebConferencePresenterUri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebConferenceAttendeeUri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISDNBandwidth" type="tns:BandwidthOverride" />
+          <s:element minOccurs="0" maxOccurs="1" name="IPBandwidth" type="tns:BandwidthOverride" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecurrencePattern">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FrequencyType" type="tns:RecurringFrequency" />
+          <s:element minOccurs="1" maxOccurs="1" name="Interval" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="DaysOfWeek" type="tns:ArrayOfDayOfWeek" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstDayOfWeek" type="tns:DayOfWeek" />
+          <s:element minOccurs="1" maxOccurs="1" name="BySetPosition" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PatternEndType" type="tns:RecurrenceEndType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PatternEndDateUTC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstOccurrenceRecInstanceIdUTC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PatternInstances" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Exceptions" type="tns:ArrayOfRecurrenceException" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="RecurringFrequency">
+        <s:restriction base="s:string">
+          <s:enumeration value="Daily" />
+          <s:enumeration value="DailyWeekday" />
+          <s:enumeration value="Weekly" />
+          <s:enumeration value="Monthly" />
+          <s:enumeration value="Yearly" />
+          <s:enumeration value="Secondly" />
+          <s:enumeration value="Minutely" />
+          <s:enumeration value="Hourly" />
+          <s:enumeration value="Default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDayOfWeek">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DayOfWeek" type="tns:DayOfWeek" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="DayOfWeek">
+        <s:restriction base="s:string">
+          <s:enumeration value="Sunday" />
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="RecurrenceEndType">
+        <s:restriction base="s:string">
+          <s:enumeration value="EndByDate" />
+          <s:enumeration value="EndByInstances" />
+          <s:enumeration value="EndNever" />
+          <s:enumeration value="Default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfRecurrenceException">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecurrenceException" nillable="true" type="tns:RecurrenceException" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecurrenceException">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ExceptionType" type="tns:ExceptionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecurrenceIdUTC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecurrenceIdRange" type="tns:ExceptionIdRange" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifiedMask" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifiedData" type="tns:Conference" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ExceptionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ADD" />
+          <s:enumeration value="MODIFY" />
+          <s:enumeration value="DELETE" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ExceptionIdRange">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="ThisAndFuture" />
+          <s:enumeration value="ThisAndPrior" />
+          <s:enumeration value="Default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ConferenceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Reservation Only" />
+          <s:enumeration value="Automatic Call Launch" />
+          <s:enumeration value="Manual Call Launch" />
+          <s:enumeration value="Default" />
+          <s:enumeration value="Ad-Hoc conference" />
+          <s:enumeration value="One Button To Push" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Bandwidth">
+        <s:restriction base="s:string">
+          <s:enumeration value="1b/64kbps" />
+          <s:enumeration value="2b/128kbps" />
+          <s:enumeration value="3b/192kbps" />
+          <s:enumeration value="4b/256kbps" />
+          <s:enumeration value="5b/320kbps" />
+          <s:enumeration value="6b/384kbps" />
+          <s:enumeration value="8b/512kbps" />
+          <s:enumeration value="12b/768kbps" />
+          <s:enumeration value="18b/1152kbps" />
+          <s:enumeration value="23b/1472kbps" />
+          <s:enumeration value="30b/1920kbps" />
+          <s:enumeration value="32b/2048kbps" />
+          <s:enumeration value="48b/3072kbps" />
+          <s:enumeration value="64b/4096kbps" />
+          <s:enumeration value="Max" />
+          <s:enumeration value="Default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="PictureMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Continuous Presence" />
+          <s:enumeration value="Enhanced CP" />
+          <s:enumeration value="Voice Switched" />
+          <s:enumeration value="Default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="EncryptionRequested">
+        <s:restriction base="s:string">
+          <s:enumeration value="Yes" />
+          <s:enumeration value="No" />
+          <s:enumeration value="If Possible" />
+          <s:enumeration value="Default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DataConferenceMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Yes" />
+          <s:enumeration value="No" />
+          <s:enumeration value="If Possible" />
+          <s:enumeration value="Default" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ExtendOptionRequested">
+        <s:restriction base="s:string">
+          <s:enumeration value="Yes" />
+          <s:enumeration value="No" />
+          <s:enumeration value="Default" />
+          <s:enumeration value="AutomaticBestEffort" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfParticipant">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Participant" nillable="true" type="tns:Participant" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Participant">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ParticipantId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NameOrNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParticipantCallType" type="tns:ParticipantType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ParticipantType">
+        <s:restriction base="s:string">
+          <s:enumeration value="TMS" />
+          <s:enumeration value="IP Video &lt;-" />
+          <s:enumeration value="IP Tel &lt;-" />
+          <s:enumeration value="ISDN Video &lt;-" />
+          <s:enumeration value="Telephone &lt;-" />
+          <s:enumeration value="IP Video -&gt;" />
+          <s:enumeration value="IP Tel -&gt;" />
+          <s:enumeration value="ISDN Video -&gt;" />
+          <s:enumeration value="Telephone -&gt;" />
+          <s:enumeration value="Directory" />
+          <s:enumeration value="User" />
+          <s:enumeration value="SIP &lt;-" />
+          <s:enumeration value="SIP -&gt;" />
+          <s:enumeration value="3G &lt;-" />
+          <s:enumeration value="3G -&gt;" />
+          <s:enumeration value="TMS Master Participant" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="BandwidthOverride">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Bandwidth" type="tns:Bandwidth" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ExternalAPIVersionSoapHeader" type="tns:ExternalAPIVersionSoapHeader" />
+      <s:complexType name="ExternalAPIVersionSoapHeader">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClientVersionIn" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientIdentifierIn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientLatestNamespaceIn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewServiceURL" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetConferenceById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConferenceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConferenceByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConferenceByIdResult" type="tns:Conference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecurrentConferenceById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConferenceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecurrentConferenceByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecurrentConferenceByIdResult" type="tns:Conference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultConference">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDefaultConferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDefaultConferenceResult" type="tns:Conference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VersionSoapHeader" type="tns:VersionSoapHeader" />
+      <s:complexType name="VersionSoapHeader">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ConfAPIVersion" type="s:int" />
+          <s:any minOccurs="0" maxOccurs="unbounded" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="SaveConference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Conference" type="tns:Conference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveConferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveConferenceResult" type="tns:Conference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveConferences">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="unbounded" name="Conferences" type="tns:Conference" />
+            <s:element minOccurs="1" maxOccurs="1" name="oneTransaction" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveConferencesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveConferencesResult" type="tns:ArrayOfConference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveConferenceRecInstance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Conference" type="tns:Conference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveConferenceRecInstanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveConferenceRecInstanceResult" type="tns:Conference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteConferenceById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConferenceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteConferenceByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EndConferenceById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConferenceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EndConferenceByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteConferenceRecInstanceById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ConferenceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteConferenceRecInstanceByIdResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetConferenceIdByExternalId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalSourceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExternalConferenceId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecurrenceIdUTC" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConferenceIdByExternalIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetConferenceIdByExternalIdResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionsSince">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CurrentTransactionId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionsSinceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionsSinceResult" type="tns:ArrayOfTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Transaction" nillable="true" type="tns:Transaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Transaction">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ConferenceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransType" type="tns:TransactionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="PerformedByUserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParticipantIds" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TransactionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="New" />
+          <s:enumeration value="Updated" />
+          <s:enumeration value="Deleted" />
+          <s:enumeration value="ListIncomplete" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetConferencesForUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="EndTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="ConferenceStatus" type="tns:ConferenceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConferencesForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConferencesForUserResult" type="tns:ArrayOfConference" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecordingAliases">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRecordingAliasesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRecordingAliasesResult" type="tns:ArrayOfRecordingDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRecordingDevice">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RecordingDevice" nillable="true" type="tns:RecordingDevice" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RecordingDevice">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aliases" type="tns:ArrayOfAliasInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAliasInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AliasInfo" nillable="true" type="tns:AliasInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AliasInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AliasId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfConference" nillable="true" type="tns:ArrayOfConference" />
+      <s:element name="Conference" nillable="true" type="tns:Conference" />
+      <s:element name="int" type="s:int" />
+      <s:element name="ArrayOfTransaction" nillable="true" type="tns:ArrayOfTransaction" />
+      <s:element name="ArrayOfRecordingDevice" nillable="true" type="tns:ArrayOfRecordingDevice" />
+    </s:schema>
+    <s:schema targetNamespace="http://tandberg.net/2004/02/tms/external/booking/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetConferencesForSystemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConferencesForSystems" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForSystemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConferencesForSystemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForSystemsExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConferenceById" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConferenceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceByIdExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurrentConferenceByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecurrentConferenceById" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurrentConferenceByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecurrentConferenceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurrentConferenceByIdExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultConferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultConference" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultConferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultConferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultConferenceVersionSoapHeader">
+    <wsdl:part name="VersionSoapHeader" element="tns:VersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferenceSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveConference" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferenceSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveConferenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferenceExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferencesSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveConferences" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferencesSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveConferencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferencesExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferenceRecInstanceSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveConferenceRecInstance" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferenceRecInstanceSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveConferenceRecInstanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveConferenceRecInstanceExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteConferenceById" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteConferenceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceByIdExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="EndConferenceByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:EndConferenceById" />
+  </wsdl:message>
+  <wsdl:message name="EndConferenceByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:EndConferenceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="EndConferenceByIdExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceRecInstanceByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteConferenceRecInstanceById" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceRecInstanceByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteConferenceRecInstanceByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceRecInstanceByIdExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceIdByExternalIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConferenceIdByExternalId" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceIdByExternalIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConferenceIdByExternalIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceIdByExternalIdExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionsSinceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionsSince" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionsSinceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionsSinceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionsSinceExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetConferencesForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConferencesForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForUserExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordingAliasesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRecordingAliases" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordingAliasesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRecordingAliasesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordingAliasesExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForSystemsHttpGetIn">
+    <wsdl:part name="TMSSystemIds" type="s1:StringArray" />
+    <wsdl:part name="StartTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="exConferenceStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForSystemsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfConference" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceByIdHttpGetIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:Conference" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurrentConferenceByIdHttpGetIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurrentConferenceByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:Conference" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultConferenceHttpGetIn" />
+  <wsdl:message name="GetDefaultConferenceHttpGetOut">
+    <wsdl:part name="Body" element="tns:Conference" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceByIdHttpGetIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceByIdHttpGetOut" />
+  <wsdl:message name="EndConferenceByIdHttpGetIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EndConferenceByIdHttpGetOut" />
+  <wsdl:message name="DeleteConferenceRecInstanceByIdHttpGetIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceRecInstanceByIdHttpGetOut" />
+  <wsdl:message name="GetConferenceIdByExternalIdHttpGetIn">
+    <wsdl:part name="externalSourceId" type="s:string" />
+    <wsdl:part name="externalConferenceId" type="s:string" />
+    <wsdl:part name="recurrenceIdUTC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceIdByExternalIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionsSinceHttpGetIn">
+    <wsdl:part name="transId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionsSinceHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTransaction" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForUserHttpGetIn">
+    <wsdl:part name="tmsUserName" type="s:string" />
+    <wsdl:part name="startDateTime" type="s:string" />
+    <wsdl:part name="endDateTime" type="s:string" />
+    <wsdl:part name="exConferenceStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfConference" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordingAliasesHttpGetIn">
+    <wsdl:part name="tmsUserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordingAliasesHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRecordingDevice" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForSystemsHttpPostIn">
+    <wsdl:part name="TMSSystemIds" type="s1:StringArray" />
+    <wsdl:part name="StartTime" type="s:string" />
+    <wsdl:part name="EndTime" type="s:string" />
+    <wsdl:part name="exConferenceStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForSystemsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfConference" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceByIdHttpPostIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:Conference" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurrentConferenceByIdHttpPostIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRecurrentConferenceByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:Conference" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultConferenceHttpPostIn" />
+  <wsdl:message name="GetDefaultConferenceHttpPostOut">
+    <wsdl:part name="Body" element="tns:Conference" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceByIdHttpPostIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceByIdHttpPostOut" />
+  <wsdl:message name="EndConferenceByIdHttpPostIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EndConferenceByIdHttpPostOut" />
+  <wsdl:message name="DeleteConferenceRecInstanceByIdHttpPostIn">
+    <wsdl:part name="TMSConferenceId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteConferenceRecInstanceByIdHttpPostOut" />
+  <wsdl:message name="GetConferenceIdByExternalIdHttpPostIn">
+    <wsdl:part name="externalSourceId" type="s:string" />
+    <wsdl:part name="externalConferenceId" type="s:string" />
+    <wsdl:part name="recurrenceIdUTC" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferenceIdByExternalIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionsSinceHttpPostIn">
+    <wsdl:part name="transId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionsSinceHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTransaction" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForUserHttpPostIn">
+    <wsdl:part name="tmsUserName" type="s:string" />
+    <wsdl:part name="startDateTime" type="s:string" />
+    <wsdl:part name="endDateTime" type="s:string" />
+    <wsdl:part name="exConferenceStatus" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetConferencesForUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfConference" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordingAliasesHttpPostIn">
+    <wsdl:part name="tmsUserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRecordingAliasesHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfRecordingDevice" />
+  </wsdl:message>
+  <wsdl:portType name="BookingServiceSoap">
+    <wsdl:operation name="GetConferencesForSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the conferences for a system between two dates. The conference objects will not include list of participants, and potential webconference and recording URIs.&lt;br&gt;If participants info or URIs are required, use GetConferenceById to get the extended conference information&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;SystemId - An array of Ids of the systems (Based on TMS Ids)&lt;br&gt;StartDate - The start date of bookings &lt;br&gt;EndDate - The end date of bookings &lt;br&gt;ConferenceStatus - The status of the conference to get. E.g. AllExceptDeleted</wsdl:documentation>
+      <wsdl:input message="tns:GetConferencesForSystemsSoapIn" />
+      <wsdl:output message="tns:GetConferencesForSystemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a Conference object with the given ConferenceId. If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - The Id of the conference (Based on TMS Ids)</wsdl:documentation>
+      <wsdl:input message="tns:GetConferenceByIdSoapIn" />
+      <wsdl:output message="tns:GetConferenceByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurrentConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a Conference object with the given ConferenceId. If the conference does not exist, an exception is thrown.Exceptions are included.&lt;br&gt;Input:&lt;br&gt;ConferenceId - The Id of the conference (Based on TMS Ids)</wsdl:documentation>
+      <wsdl:input message="tns:GetRecurrentConferenceByIdSoapIn" />
+      <wsdl:output message="tns:GetRecurrentConferenceByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultConference">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a default Conference object filled with default values as given in Administrative Tools -&gt; Configuration -&gt; Conference.&lt;br&gt;&lt;br&gt;Returns a Conference object filled with the default settings for a conference.</wsdl:documentation>
+      <wsdl:input message="tns:GetDefaultConferenceSoapIn" />
+      <wsdl:output message="tns:GetDefaultConferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveConference">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Saves a conference in TMS. If conferenceId is not set, a new conference is created and saved. If the conferenceId is set, the existing conference is updated. If no conference with the given ConferenceId exists, an exception is thrown.&lt;br&gt;&lt;br&gt;This method will fail if any of the participants are already booked in the same time period or if a call route is to be made, but no call route could be found.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;Conference - the Conference object to be created/updated&lt;br&gt;&lt;br&gt;Returns a Conference object updated with actual values saved in TMS.</wsdl:documentation>
+      <wsdl:input message="tns:SaveConferenceSoapIn" />
+      <wsdl:output message="tns:SaveConferenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveConferences">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Saves multiple conference in TMS. If conferenceId is not set, a new conference is created and saved. If the conferenceId is set, the existing conference is updated. If no conference with the given ConferenceId exists, an exception is thrown.&lt;br&gt;&lt;br&gt;This method will fail if any of the participants are already booked in the same time period or if a call route is to be made, but no call route could be found.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;Conference - the Conference objects to be created/updated&lt;br&gt;&lt;br&gt;Returns Conference objects updated with actual values saved in TMS.</wsdl:documentation>
+      <wsdl:input message="tns:SaveConferencesSoapIn" />
+      <wsdl:output message="tns:SaveConferencesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveConferenceRecInstance">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Saves a conference recurrent instance in TMS. If no conference with the given ConferenceId exists, an exception is thrown.&lt;br&gt;&lt;br&gt;This method will fail if any of the participants are already booked in the same time period or if a call route is to be made, but no call route could be found.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;Conference - the Conference object to be created/updated&lt;br&gt;&lt;br&gt;Returns a Conference object updated with actual values saved in TMS.</wsdl:documentation>
+      <wsdl:input message="tns:SaveConferenceRecInstanceSoapIn" />
+      <wsdl:output message="tns:SaveConferenceRecInstanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteConferenceByIdSoapIn" />
+      <wsdl:output message="tns:DeleteConferenceByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ends a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:EndConferenceByIdSoapIn" />
+      <wsdl:output message="tns:EndConferenceByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceRecInstanceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteConferenceRecInstanceByIdSoapIn" />
+      <wsdl:output message="tns:DeleteConferenceRecInstanceByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceIdByExternalId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a ConferenceId (as defined in TMS) given an ExternalSourceId and ExternalConferenceId. This function is used to lookup conference that have been updated in the external source, and that must be updated in TMS. The ExternalSourceId and the ExternalPrimaryKey fields must have been provided in the initial SaveConference call.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ExternalSourceId - Unique identifier of the external source (i.e. server IP-address).&lt;br&gt;ExternalConferenceId - Unique identifier of the conference within the external source (e.g. primary key in database).&lt;br&gt;&lt;br&gt;Returns a ConferenceId, as defined in TMS. Can be used with e.g. GetConferenceById(...)</wsdl:documentation>
+      <wsdl:input message="tns:GetConferenceIdByExternalIdSoapIn" />
+      <wsdl:output message="tns:GetConferenceIdByExternalIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionsSince">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an Array of Transactions since the CurrentTransactionId. This method is used to get a list of conference creations, updated and deletes that must be performed in order to keep a mirrored conference database synchronized. The transaction with id CurrentTransactionId will not be included in the array.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;CurrentTransactionId - The transaction id of the last commited transaction of the last synchronization.&lt;br&gt;&lt;br&gt;Returns an Array of Transaction, giving the changes done since CurrentTransactionId</wsdl:documentation>
+      <wsdl:input message="tns:GetTransactionsSinceSoapIn" />
+      <wsdl:output message="tns:GetTransactionsSinceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferencesForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of conferences for a TMS user, between the datetimes provided as parameters. The conference objects will not include list of participants, and potential webconference and recording URIs.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userId - the TMS user ID&lt;br&gt;startDateTime - The start date of bookings &lt;br&gt;endDateTime - The end date of bookings &lt;br&gt;If UserName is not provided, the conferences owned by the logged on user will be returned.</wsdl:documentation>
+      <wsdl:input message="tns:GetConferencesForUserSoapIn" />
+      <wsdl:output message="tns:GetConferencesForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordingAliases">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a dictionary holding recording alias information for a specific user.This method is used to get a list of recording alias information to make adding a recording participant to the conference possible.&lt;br&gt;This method returns a dictionary, with the recording devices name as key and a list of alias information for that recording device as value.&lt;br&gt;If UserName is not provided, the aliases for the logged on user will be returned.</wsdl:documentation>
+      <wsdl:input message="tns:GetRecordingAliasesSoapIn" />
+      <wsdl:output message="tns:GetRecordingAliasesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BookingServiceHttpGet">
+    <wsdl:operation name="GetConferencesForSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the conferences for a system between two dates. The conference objects will not include list of participants, and potential webconference and recording URIs.&lt;br&gt;If participants info or URIs are required, use GetConferenceById to get the extended conference information&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;SystemId - An array of Ids of the systems (Based on TMS Ids)&lt;br&gt;StartDate - The start date of bookings &lt;br&gt;EndDate - The end date of bookings &lt;br&gt;ConferenceStatus - The status of the conference to get. E.g. AllExceptDeleted</wsdl:documentation>
+      <wsdl:input message="tns:GetConferencesForSystemsHttpGetIn" />
+      <wsdl:output message="tns:GetConferencesForSystemsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a Conference object with the given ConferenceId. If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - The Id of the conference (Based on TMS Ids)</wsdl:documentation>
+      <wsdl:input message="tns:GetConferenceByIdHttpGetIn" />
+      <wsdl:output message="tns:GetConferenceByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurrentConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a Conference object with the given ConferenceId. If the conference does not exist, an exception is thrown.Exceptions are included.&lt;br&gt;Input:&lt;br&gt;ConferenceId - The Id of the conference (Based on TMS Ids)</wsdl:documentation>
+      <wsdl:input message="tns:GetRecurrentConferenceByIdHttpGetIn" />
+      <wsdl:output message="tns:GetRecurrentConferenceByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultConference">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a default Conference object filled with default values as given in Administrative Tools -&gt; Configuration -&gt; Conference.&lt;br&gt;&lt;br&gt;Returns a Conference object filled with the default settings for a conference.</wsdl:documentation>
+      <wsdl:input message="tns:GetDefaultConferenceHttpGetIn" />
+      <wsdl:output message="tns:GetDefaultConferenceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteConferenceByIdHttpGetIn" />
+      <wsdl:output message="tns:DeleteConferenceByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ends a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:EndConferenceByIdHttpGetIn" />
+      <wsdl:output message="tns:EndConferenceByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceRecInstanceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteConferenceRecInstanceByIdHttpGetIn" />
+      <wsdl:output message="tns:DeleteConferenceRecInstanceByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceIdByExternalId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a ConferenceId (as defined in TMS) given an ExternalSourceId and ExternalConferenceId. This function is used to lookup conference that have been updated in the external source, and that must be updated in TMS. The ExternalSourceId and the ExternalPrimaryKey fields must have been provided in the initial SaveConference call.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ExternalSourceId - Unique identifier of the external source (i.e. server IP-address).&lt;br&gt;ExternalConferenceId - Unique identifier of the conference within the external source (e.g. primary key in database).&lt;br&gt;&lt;br&gt;Returns a ConferenceId, as defined in TMS. Can be used with e.g. GetConferenceById(...)</wsdl:documentation>
+      <wsdl:input message="tns:GetConferenceIdByExternalIdHttpGetIn" />
+      <wsdl:output message="tns:GetConferenceIdByExternalIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionsSince">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an Array of Transactions since the CurrentTransactionId. This method is used to get a list of conference creations, updated and deletes that must be performed in order to keep a mirrored conference database synchronized. The transaction with id CurrentTransactionId will not be included in the array.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;CurrentTransactionId - The transaction id of the last commited transaction of the last synchronization.&lt;br&gt;&lt;br&gt;Returns an Array of Transaction, giving the changes done since CurrentTransactionId</wsdl:documentation>
+      <wsdl:input message="tns:GetTransactionsSinceHttpGetIn" />
+      <wsdl:output message="tns:GetTransactionsSinceHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferencesForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of conferences for a TMS user, between the datetimes provided as parameters. The conference objects will not include list of participants, and potential webconference and recording URIs.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userId - the TMS user ID&lt;br&gt;startDateTime - The start date of bookings &lt;br&gt;endDateTime - The end date of bookings &lt;br&gt;If UserName is not provided, the conferences owned by the logged on user will be returned.</wsdl:documentation>
+      <wsdl:input message="tns:GetConferencesForUserHttpGetIn" />
+      <wsdl:output message="tns:GetConferencesForUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordingAliases">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a dictionary holding recording alias information for a specific user.This method is used to get a list of recording alias information to make adding a recording participant to the conference possible.&lt;br&gt;This method returns a dictionary, with the recording devices name as key and a list of alias information for that recording device as value.&lt;br&gt;If UserName is not provided, the aliases for the logged on user will be returned.</wsdl:documentation>
+      <wsdl:input message="tns:GetRecordingAliasesHttpGetIn" />
+      <wsdl:output message="tns:GetRecordingAliasesHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BookingServiceHttpPost">
+    <wsdl:operation name="GetConferencesForSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the conferences for a system between two dates. The conference objects will not include list of participants, and potential webconference and recording URIs.&lt;br&gt;If participants info or URIs are required, use GetConferenceById to get the extended conference information&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;SystemId - An array of Ids of the systems (Based on TMS Ids)&lt;br&gt;StartDate - The start date of bookings &lt;br&gt;EndDate - The end date of bookings &lt;br&gt;ConferenceStatus - The status of the conference to get. E.g. AllExceptDeleted</wsdl:documentation>
+      <wsdl:input message="tns:GetConferencesForSystemsHttpPostIn" />
+      <wsdl:output message="tns:GetConferencesForSystemsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a Conference object with the given ConferenceId. If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - The Id of the conference (Based on TMS Ids)</wsdl:documentation>
+      <wsdl:input message="tns:GetConferenceByIdHttpPostIn" />
+      <wsdl:output message="tns:GetConferenceByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurrentConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a Conference object with the given ConferenceId. If the conference does not exist, an exception is thrown.Exceptions are included.&lt;br&gt;Input:&lt;br&gt;ConferenceId - The Id of the conference (Based on TMS Ids)</wsdl:documentation>
+      <wsdl:input message="tns:GetRecurrentConferenceByIdHttpPostIn" />
+      <wsdl:output message="tns:GetRecurrentConferenceByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultConference">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a default Conference object filled with default values as given in Administrative Tools -&gt; Configuration -&gt; Conference.&lt;br&gt;&lt;br&gt;Returns a Conference object filled with the default settings for a conference.</wsdl:documentation>
+      <wsdl:input message="tns:GetDefaultConferenceHttpPostIn" />
+      <wsdl:output message="tns:GetDefaultConferenceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteConferenceByIdHttpPostIn" />
+      <wsdl:output message="tns:DeleteConferenceByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EndConferenceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Ends a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:EndConferenceByIdHttpPostIn" />
+      <wsdl:output message="tns:EndConferenceByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceRecInstanceById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a conference with the given ConferenceId (as defined in TMS). If the conference does not exist, an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ConferenceId - the ConferenceId of the conference to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteConferenceRecInstanceByIdHttpPostIn" />
+      <wsdl:output message="tns:DeleteConferenceRecInstanceByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceIdByExternalId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a ConferenceId (as defined in TMS) given an ExternalSourceId and ExternalConferenceId. This function is used to lookup conference that have been updated in the external source, and that must be updated in TMS. The ExternalSourceId and the ExternalPrimaryKey fields must have been provided in the initial SaveConference call.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;ExternalSourceId - Unique identifier of the external source (i.e. server IP-address).&lt;br&gt;ExternalConferenceId - Unique identifier of the conference within the external source (e.g. primary key in database).&lt;br&gt;&lt;br&gt;Returns a ConferenceId, as defined in TMS. Can be used with e.g. GetConferenceById(...)</wsdl:documentation>
+      <wsdl:input message="tns:GetConferenceIdByExternalIdHttpPostIn" />
+      <wsdl:output message="tns:GetConferenceIdByExternalIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionsSince">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an Array of Transactions since the CurrentTransactionId. This method is used to get a list of conference creations, updated and deletes that must be performed in order to keep a mirrored conference database synchronized. The transaction with id CurrentTransactionId will not be included in the array.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;CurrentTransactionId - The transaction id of the last commited transaction of the last synchronization.&lt;br&gt;&lt;br&gt;Returns an Array of Transaction, giving the changes done since CurrentTransactionId</wsdl:documentation>
+      <wsdl:input message="tns:GetTransactionsSinceHttpPostIn" />
+      <wsdl:output message="tns:GetTransactionsSinceHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferencesForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a list of conferences for a TMS user, between the datetimes provided as parameters. The conference objects will not include list of participants, and potential webconference and recording URIs.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userId - the TMS user ID&lt;br&gt;startDateTime - The start date of bookings &lt;br&gt;endDateTime - The end date of bookings &lt;br&gt;If UserName is not provided, the conferences owned by the logged on user will be returned.</wsdl:documentation>
+      <wsdl:input message="tns:GetConferencesForUserHttpPostIn" />
+      <wsdl:output message="tns:GetConferencesForUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordingAliases">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns a dictionary holding recording alias information for a specific user.This method is used to get a list of recording alias information to make adding a recording participant to the conference possible.&lt;br&gt;This method returns a dictionary, with the recording devices name as key and a list of alias information for that recording device as value.&lt;br&gt;If UserName is not provided, the aliases for the logged on user will be returned.</wsdl:documentation>
+      <wsdl:input message="tns:GetRecordingAliasesHttpPostIn" />
+      <wsdl:output message="tns:GetRecordingAliasesHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BookingServiceSoap" type="tns:BookingServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetConferencesForSystems">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferencesForSystems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferencesForSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferencesForSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceById">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferenceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurrentConferenceById">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetRecurrentConferenceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRecurrentConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRecurrentConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultConference">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetDefaultConference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDefaultConferenceVersionSoapHeader" part="VersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConference">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/SaveConference" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveConferenceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveConferenceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConferences">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/SaveConferences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveConferencesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveConferencesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConferenceRecInstance">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/SaveConferenceRecInstance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveConferenceRecInstanceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveConferenceRecInstanceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceById">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/DeleteConferenceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndConferenceById">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/EndConferenceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:EndConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:EndConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceRecInstanceById">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/DeleteConferenceRecInstanceById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteConferenceRecInstanceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteConferenceRecInstanceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceIdByExternalId">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferenceIdByExternalId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferenceIdByExternalIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferenceIdByExternalIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionsSince">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetTransactionsSince" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTransactionsSinceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTransactionsSinceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferencesForUser">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferencesForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferencesForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetConferencesForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordingAliases">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetRecordingAliases" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRecordingAliasesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRecordingAliasesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BookingServiceSoap12" type="tns:BookingServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetConferencesForSystems">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferencesForSystems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferencesForSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferencesForSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceById">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferenceById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurrentConferenceById">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetRecurrentConferenceById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRecurrentConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRecurrentConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultConference">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetDefaultConference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDefaultConferenceVersionSoapHeader" part="VersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConference">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/SaveConference" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveConferenceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveConferenceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConferences">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/SaveConferences" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveConferencesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveConferencesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveConferenceRecInstance">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/SaveConferenceRecInstance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveConferenceRecInstanceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveConferenceRecInstanceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceById">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/DeleteConferenceById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EndConferenceById">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/EndConferenceById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:EndConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:EndConferenceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceRecInstanceById">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/DeleteConferenceRecInstanceById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteConferenceRecInstanceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteConferenceRecInstanceByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceIdByExternalId">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferenceIdByExternalId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferenceIdByExternalIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferenceIdByExternalIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionsSince">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetTransactionsSince" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTransactionsSinceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTransactionsSinceExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferencesForUser">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetConferencesForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferencesForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetConferencesForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordingAliases">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/GetRecordingAliases" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRecordingAliasesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRecordingAliasesExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BookingServiceHttpGet" type="tns:BookingServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetConferencesForSystems">
+      <http:operation location="/GetConferencesForSystems" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceById">
+      <http:operation location="/GetConferenceById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurrentConferenceById">
+      <http:operation location="/GetRecurrentConferenceById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultConference">
+      <http:operation location="/GetDefaultConference" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceById">
+      <http:operation location="/DeleteConferenceById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="EndConferenceById">
+      <http:operation location="/EndConferenceById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceRecInstanceById">
+      <http:operation location="/DeleteConferenceRecInstanceById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceIdByExternalId">
+      <http:operation location="/GetConferenceIdByExternalId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionsSince">
+      <http:operation location="/GetTransactionsSince" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferencesForUser">
+      <http:operation location="/GetConferencesForUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordingAliases">
+      <http:operation location="/GetRecordingAliases" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BookingServiceHttpPost" type="tns:BookingServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetConferencesForSystems">
+      <http:operation location="/GetConferencesForSystems" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceById">
+      <http:operation location="/GetConferenceById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecurrentConferenceById">
+      <http:operation location="/GetRecurrentConferenceById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultConference">
+      <http:operation location="/GetDefaultConference" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceById">
+      <http:operation location="/DeleteConferenceById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="EndConferenceById">
+      <http:operation location="/EndConferenceById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteConferenceRecInstanceById">
+      <http:operation location="/DeleteConferenceRecInstanceById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetConferenceIdByExternalId">
+      <http:operation location="/GetConferenceIdByExternalId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionsSince">
+      <http:operation location="/GetTransactionsSince" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConferencesForUser">
+      <http:operation location="/GetConferencesForUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRecordingAliases">
+      <http:operation location="/GetRecordingAliases" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BookingService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get and set conferences.</wsdl:documentation>
+    <wsdl:port name="BookingServiceSoap" binding="tns:BookingServiceSoap">
+      <soap:address location="http://dsoserver:82/tms/external/Booking/BookingService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BookingServiceSoap12" binding="tns:BookingServiceSoap12">
+      <soap12:address location="http://dsoserver:82/tms/external/Booking/BookingService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BookingServiceHttpGet" binding="tns:BookingServiceHttpGet">
+      <http:address location="http://dsoserver:82/tms/external/Booking/BookingService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BookingServiceHttpPost" binding="tns:BookingServiceHttpPost">
+      <http:address location="http://dsoserver:82/tms/external/Booking/BookingService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

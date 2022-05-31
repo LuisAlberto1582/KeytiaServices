@@ -1,0 +1,785 @@
+﻿body
+{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body, td, a
+{
+    font-family: Verdana;
+    font-size: 8pt;
+}
+
+A
+{
+    text-decoration: none;
+    color: #023185;
+}
+
+A:active
+{
+    text-decoration: none;
+    color: #023185;
+}
+
+A:visited
+{
+    text-decoration: none;
+    color: #666666;
+}
+
+A:hover
+{
+    text-decoration: underline;
+}
+
+.divWrapper
+{
+    background-color: White;
+    padding: 10px;
+}
+
+.divWrapper .divWrapperInner
+{
+    background-color: White;
+}
+
+
+.pageTitle, span.pageTitle, .pageTitle a
+{
+    font-family: Tahoma;
+    color: #365f91;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.pageTitle a
+{
+    font-size: 100%;
+}
+
+.sectionTitle
+{
+    color: #365f91;
+    font-weight: bold;
+}
+
+.toolbar
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: Beige;
+    border-color: DarkGray;
+    border-style: Solid;
+    border-width: 1px;
+}
+
+.toolbarButton
+{
+    cursor: pointer;
+}
+
+.toolbarLabel
+{
+    font-size: x-small;
+    text-align: center;
+}
+
+/*Navegador Horizontal******************************************/
+﻿.ui-smoothMenu-disabled *
+{
+    cursor: default;
+}
+.DSONavegadorH, .ui-smoothMenu > div > ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.DSONavegadorH > li
+{
+    float: left;
+}
+
+.DSONavegadorH > li a
+{
+    display: block;
+    width: 150px;
+}
+
+.DSONavegadorH > li ul, .ui-smoothMenu > div > ul
+{
+    width: 176px;
+}
+
+.ui-smoothMenu > div > ul > li > a
+{
+    display: block;
+}
+
+ul.clearfix:after
+{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+.ui-smoothMenu-item
+{
+    padding-right: 24px;
+    position: relative;
+}
+
+.ui-smoothMenu-item .ui-icon
+{
+    right: 4px;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+}
+
+/*Navegador Vertical******************************************/
+.DSONavegadorV a
+{
+    display: block;
+}
+
+/*Reporte Estandar******************************************/
+.ReporteEstandar .Zonas
+{
+    width: 1220px;
+}
+
+.ZonaGraficasHorizontal
+{
+    position: relative;
+    float: left;
+    width: 610px;
+}
+.ZonaReporteHorizontal
+{
+    position: relative;
+    float: left;
+    width: 610px;
+}
+
+.ZonaGraficasHorizontal .DSORadioButtonList
+{
+    position: relative;
+    float: right;
+}
+
+.PanelGraficaVertical, .PanelGraficaHisVertical
+{
+    position: relative;
+    float: left;
+}
+
+.ZonaReporteVertical
+{
+    width: 100%;
+    float: left;
+}
+
+tr.SubTotalPag, .RepRuta
+{
+    font-weight: bold;
+}
+
+td.RepInt, td.RepIntFormat, td.RepFloat, td.RepCurrency
+{
+    text-align: right;
+}
+
+td.RepDate, td.RepDateTime
+{
+    text-align: center;
+}
+
+td.RepDefault
+{
+    text-align: justify;
+}
+
+.ReporteEstandar .DSOExpandable .ui-widget-content
+{
+    border-style: none;
+}
+
+.ReporteEstandar .dataTables_wrapper
+{
+    min-height: 100px;
+    _height: 100px;
+}
+
+.ZonaReporteHorizontal .dataTables_scrollBody
+{
+    max-height: 500px;
+    _height: 500px;
+}
+
+.ZonaParametros .ColSpan1
+{
+    width: 40%;
+}
+
+.ZonaParametros .ColSpan3
+{
+    width: 90%;
+}
+
+.ZonaParametros .MultiSelectWrapper .DSOGrid
+{
+    width: 100% !important;
+}
+
+.RepHeader
+{
+    width: 100%;
+}
+.RepTcLbl
+{
+    vertical-align: middle;
+    background-color: #4297d7;
+    color: White;
+}
+.RepTcLbl .Columns2 .ColSpan1
+{
+    width: 10%;
+}
+.RepTcLbl .Columns2 .ColSpan2, .RepTcDesc .Columns2 .ColSpan2
+{
+    width: 100%;
+}
+.RepTcDesc .Columns2 .ColSpan1
+{
+    width: 90%;
+}
+.RepTcLbl .Columns4 .ColSpan1
+{
+    width: 10%;
+}
+.RepTcLbl .Columns4 .ColSpan2, .RepTcDesc .Columns4 .ColSpan2
+{
+    width: 50%;
+}
+.RepTcLbl .Columns4 .ColSpan3, .RepTcDesc .Columns4 .ColSpan3
+{
+    width: 90%;
+}
+.RepTcLbl .Columns4 .ColSpan4, .RepTcDesc .Columns4 .ColSpan4
+{
+    width: 100%;
+}
+.RepTcDesc .Columns4 .ColSpan1
+{
+    width: 40%;
+}
+
+/*Dashboard******************************************/
+.DashboardPanelReportes
+{
+    width: 1220px;
+}
+
+.DashboardCell1 .DashboardPanelConfig .DSODropDownList
+{
+    width: 580px;
+    float: left;
+}
+
+.DashboardCell2 .DashboardPanelConfig .DSODropDownList
+{
+    width: 1190px;
+    float: left;
+}
+
+.DashboardReporte
+{
+    position: relative;
+    float: left;
+    width: 610px;
+}
+
+.DashboardTablaReportes td
+{
+    vertical-align: top;
+}
+
+td.DashboardCell1, td.DashboardCell2
+{
+    border: 1px solid #c5dbec;
+}
+
+.DashboardCell1 .ReporteEstandar .Zonas
+{
+    width: 610px;
+}
+
+.DashboardCell2 .ReporteEstandar .Zonas
+{
+    width: 1220px;
+}
+
+.DashboardReporte2Bloques
+{
+    position: relative;
+    width: 100%;
+    float: left;
+}
+
+.DashboardReporte .dataTables_wrapper, .DashboardReporte2Bloques .dataTables_wrapper
+{
+    min-height: 100px;
+    _height: 100px;
+}
+
+.DashboardReporte .dataTables_scrollBody, .DashboardReporte2Bloques .dataTables_scrollBody, .ReporteEstandar .dataTables_scrollBody
+{
+    max-height: 300px;
+    _height: 300px;
+    overflow-x: scroll !important;
+}
+
+/*Seccion de estilos creados por DTI para paginas nuevas (AM 20140211)*/
+
+/*Buttons*/.btnAplicar
+{
+    background-image: url(   '../../images/playsmall.png' ) !important;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+.tdLblFechas
+{
+    width: 40px;
+    color: White;
+    background-color: #4297D7;
+}
+.tdLblFechasNoWidth
+{
+    color: White;
+    background-color: #4297D7;
+}
+.tdDSODT
+{
+    width: 140px;
+}
+/*GridViews*/.grvheaderStyle
+{
+    background-color: #2E6E9E;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+.grvitemStyle
+{
+    background-color: #F1F4F8;
+    color: #000000;
+    border-style: solid;
+    border-color: Gray;
+    border-width: thin;
+    text-align: right;
+}
+.grvalternateItemStyle
+{
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: solid;
+    border-color: Gray;
+    border-width: thin;
+    text-align: right;
+}
+/*Label*/.titulos
+{
+    font-family: verdana;
+    color: Black;
+    font-weight: bold;
+    font-size: large;
+}
+.titulosReportes
+{
+    border: 1px solid #c5dbec;
+    background: #c5dbec url(../../styles/azul/images/ui-bg_glass_85_dfeffc_1x400.png) 50% 50% repeat-x;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: 'Verdana';
+    color: #2e6e9e;
+    pointer-events: none;
+    cursor: default;
+}
+
+.PanelTitulosYBordeReportes
+{
+    border-color: #C6DBEF;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+}
+.tituloInicio
+{
+    color: #365F91;
+    font-family: Tahoma;
+    font-size: Medium;
+    font-weight: bold;
+}
+
+.AutoHeight
+{
+    height: auto;
+}
+
+.noRepeat
+{
+    background-repeat: no-repeat;
+}
+
+.maxWidth100Perc
+{
+    width: auto;
+    max-width: 100%;
+}
+
+.maxWidth1300px
+{
+    width: auto;
+    max-width: 1300px;
+}
+
+.thwidth150 th
+{
+    width: 150px;
+}
+.ControlesAlCentro
+{
+    text-align: center;
+    margin: auto;
+}
+
+/*RZ.20140401 Estilos para modal popups*/
+/*Modal Pop Up*/
+.modalBackground
+{
+    background-color: Black;
+    filter: alpha(opacity=90);
+    opacity: 0.8;
+}
+.modalPopup
+{
+    background-color: #ECEEE7;
+    border-width: 3px;
+    border-style: solid;
+    border-color: black;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 600px;
+    height: 300px;
+}
+
+.tituloHeaderReportes
+{
+    color: #365F91;
+    font-family: Tahoma;
+    font-size: small;
+    font-weight: bold;
+}
+
+a.tituloHeaderReportes
+{
+    color: #365F91;
+    font-family: Tahoma;
+    font-size: small;
+    font-weight: bold;
+}
+
+#RepConIntColNvl2 .grvitemStyle td
+{
+    text-align: right;
+}
+
+.Center
+{
+    margin: auto;
+    position: relative;
+}
+
+.titulosFiltroDetallado
+{
+    font-weight: bold;
+    font-size: 12px;
+    font-family: 'Verdana';
+    color: #2e6e9e;
+}
+
+.imgCalendarDetallado > img
+{
+    height: 20.5px;
+    vertical-align: top;
+}
+
+
+
+/*Se mueven los estilos hacia esta hoja de estilos para cuando se hagan los cambios de color se afecte solo esta css.*/
+/* Estilos de los dashboard con FC */
+.MarcoCeleste
+{
+    border-color: #C6DBEF;
+    border-width: 1px;
+    border-style: solid;
+}
+.divToLeft
+{
+    width: 49.5%;
+    float: left;
+}
+
+.divToRight
+{
+    width: 49.5%;
+    float: right;
+}
+
+.divToCenter
+{
+    width: auto;
+    float: none;
+    border-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.TopCenter
+{
+    vertical-align: top;
+}
+.MaxWidth50Perc
+{
+    max-width: 50%;
+}
+.letraRoja
+{
+    color: Red;
+}
+.letraVerde
+{
+    color: Green;
+}
+
+/*
+.fondoAzulLetraBlanca
+{
+    color: White;
+    background-color: #4297D7;
+}
+*/
+
+/*Estilos de TabContainer*/
+.MyTabStyle .ajax__tab_header
+{
+    font-family: "Helvetica Neue" , Arial, Sans-Serif;
+    font-size: 10px;
+    font-weight: bold;
+    display: block;
+}
+.MyTabStyle .ajax__tab_header .ajax__tab_outer
+{
+    border-color: #c5dbec;
+    color: #2e6e9e;
+    padding-left: 10px;
+    margin-right: 3px;
+    border: solid 1px #c5dbec;
+}
+.MyTabStyle .ajax__tab_header .ajax__tab_inner
+{
+    border-color: #c5dbec;
+    color: #2e6e9e;
+    padding: 3px 10px 2px 0px;
+}
+.MyTabStyle .ajax__tab_hover .ajax__tab_outer
+{
+    background-color: #2e6e9e;
+}
+.MyTabStyle .ajax__tab_hover .ajax__tab_inner
+{
+    color: #c5dbec;
+}
+.MyTabStyle .ajax__tab_active .ajax__tab_outer
+{
+    border-bottom-color: #ffffff;
+    background-color: #2e6e9e;
+}
+.MyTabStyle .ajax__tab_active .ajax__tab_inner
+{
+    color: #c5dbec;
+    border-color: #c5dbec;
+}
+.MyTabStyle .ajax__tab_body
+{
+    font-family: verdana,tahoma,helvetica;
+    font-size: 10pt;
+    background-color: #fff;
+    border-top-width: 0;
+    border: solid 1px #c5dbec;
+    border-top-color: #ffffff;
+}
+
+td.fondoBlacoSinCalendar input.DSODateTimeBox
+{
+    background-color: white;
+    border-style: groove;
+}
+
+.placeholderstile::-webkit-input-placeholder
+{
+    font-style: italic;
+}
+
+.imgStyleAutocomplete
+{
+    vertical-align: text-bottom;
+    margin-left: -2px;
+}
+
+.imgStyleHelp
+{
+    width: 18px;
+    height: 18px;
+    vertical-align: bottom;
+}
+
+.linkButtonHelpStyle
+{
+    float: right;
+    font-size: 12px;
+}
+
+.linkButtonEtiquetacion
+{
+    float: right;
+    font-size: 16px;
+    margin-right: 100px;
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Dashboard Siana */
+.divToLeft3Col
+{
+    width: 38%;
+    float: left;
+}
+
+.divToRight3Col
+{
+    width: 24%;
+    float: right;
+}
+
+.divToOneCol
+{
+    width: 90.00%;
+    float: left;
+}
+
+
+/* NZ 20160720 Se agregan estilos para los Modales que aparecen en la pagina de etiquetacion de Banorte. Sin embargo estos mismos estilos podrian usarce
+en cualquier otra pagina */
+.modalBackgroundEtq
+{
+    background-color: Black;
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+.modalPopupEtq
+{
+    background-color: #FFFFFF;
+    border: 3px solid #365f91;
+    border-radius: 12px;
+    padding: 0;
+}
+.modalPopupEtq .headerEtq
+{
+    background: #5c9ccc url(images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) 50% 50% repeat-x;
+    color: White;
+    line-height: 20px;
+    text-align: center;
+    font-weight: bold;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    vertical-align: middle;
+}
+.modalPopupEtq .bodyEtq
+{
+    min-height: 50px;
+    line-height: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+.modalPopupEtq .footerEtq
+{
+    padding: 6px;
+}
+.modalPopupEtq .yesEtq, .modalPopupEtq .noEtq
+{
+    height: 23px;
+    color: #2e6e9e;
+    line-height: 23px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #dfeffc url(images/ui-bg_glass_85_dfeffc_1x400.png) 50% 50% repeat-x;
+    border: 1px solid #c5dbec;
+}
+
+/* Fin */
+
+.linkButtonEtiquetacion
+{
+    float: right;
+    font-size: 14px;
+    margin-right: 100px;
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: Tahoma;
+}
+
+.labelStyleTodoEtiquetado
+{
+    float: right;
+    font-size: 14px;
+    margin-right: 100px;
+    color: Green;
+    font-weight: bold;
+    /*text-decoration: underline;*/
+    font-family: Tahoma;
+}
+
+.invisible
+{
+    height: 10px;
+}
+
+
+.headerConsumoGlobalFiltro
+{
+    border: 1px solid #4297D7;
+    background: #5C9CCC url(images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) 50% 50% repeat-x;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.titleConsumoGlobalFiltro
+{
+	color: #FFFFFF;
+	font-weight:bold;
+	cursor:pointer;
+	font-size: 11px;
+}

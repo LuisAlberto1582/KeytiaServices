@@ -1,0 +1,36 @@
+﻿.modalUpload {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    top: 0;
+}
+
+.centerUpload {
+    z-index: 1000;
+    margin: 220px;
+    padding: 10px;
+    width: 130px;
+}
+
+.center img {
+    height: 120px;
+    width: 120px;
+}
+.classButton {
+    background-color: transparent;
+    width: 0px;
+    height: 0px;
+    border: none;
+}
+
+
+.chkbox label {
+    margin-left: 5px;
+    display: inline !important;
+}
+
+.chkbox input {
+    display: inline-block;
+}
+

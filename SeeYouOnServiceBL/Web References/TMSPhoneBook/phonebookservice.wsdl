@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.tandberg.com/TMS/PhoneBookService/1.0/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.tandberg.com/TMS/PhoneBookService/1.0/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This is the TMS external phonebook service. NOTE: API under continous development and may change without notice. Not for external use!</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.tandberg.com/TMS/PhoneBookService/1.0/">
+      <s:element name="Ping">
+        <s:complexType />
+      </s:element>
+      <s:element name="PingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PingResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhoneBooks">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPhoneBooksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPhoneBooksResult" type="tns:ArrayOfPhoneBook" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPhoneBook">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PhoneBook" nillable="true" type="tns:PhoneBook" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneBook">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSourcesForPhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourcesForPhoneBookResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourcesForPhoneBookResult" type="tns:ArrayOfPhoneBookToSourceBinding" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPhoneBookToSourceBinding">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PhoneBookToSourceBinding" nillable="true" type="tns:PhoneBookToSourceBinding" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneBookToSourceBinding">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PhoneBookId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PhoneBookSourceId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="SyncDirection" type="tns:SyncDirection" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:BindingStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SyncDirection">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="ImportToTMS" />
+          <s:enumeration value="ImportToTMSAndExportToExternalSource" />
+          <s:enumeration value="SearchOnly" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="BindingStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="Connected" />
+          <s:enumeration value="Connecting" />
+          <s:enumeration value="Disconnecting" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreatePhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentPhoneBookId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePhoneBookResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePhoneBookResult" type="tns:PhoneBook" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenamePhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenamePhoneBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeletePhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletePhoneBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="MovePhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParentPhoneBookId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MovePhoneBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="BindSourceToPhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookSourceId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="SyncDirection" type="tns:SyncDirection" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BindSourceToPhoneBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UnbindSourceFromPhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PhoneBookSourceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnbindSourceFromPhoneBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSources">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSourcesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourcesResult" type="tns:ArrayOfPhoneBookSource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPhoneBookSource">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PhoneBookSource" nillable="true" type="tns:PhoneBookSource" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneBookSource">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:PhoneBookSourceType" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsConnected" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PhoneBookSourceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="TMS" />
+          <s:enumeration value="TMSEndPoints" />
+          <s:enumeration value="PolycomGMS" />
+          <s:enumeration value="Gatekeeper" />
+          <s:enumeration value="SystemLocalPhoneBook" />
+          <s:enumeration value="OtherTMSPhoneBook" />
+          <s:enumeration value="H350" />
+          <s:enumeration value="ActiveDirectory" />
+          <s:enumeration value="H350ByUser" />
+          <s:enumeration value="HTTPPhoneBook" />
+          <s:enumeration value="TMSUserPhoneBook" />
+          <s:enumeration value="MoviVideoServer" />
+          <s:enumeration value="ProvisioningServer" />
+          <s:enumeration value="ManualList" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetSourceParameters">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSourceParametersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSourceParametersResult" type="tns:PhoneBookSourceSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PhoneBookSourceSettings">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Settings" type="tns:ArrayOfPhoneBookSourceSetting" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPhoneBookSourceSetting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PhoneBookSourceSetting" nillable="true" type="tns:PhoneBookSourceSetting" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneBookSourceSetting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSourceResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Source" type="tns:PhoneBookSource" />
+            <s:element minOccurs="0" maxOccurs="1" name="Settings" type="tns:PhoneBookSourceSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateSourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateSourceResult" type="tns:PhoneBookSource" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Source" type="tns:PhoneBookSource" />
+            <s:element minOccurs="0" maxOccurs="1" name="Settings" type="tns:PhoneBookSourceSettings" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateSourceResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RenameSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameSourceResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="SearchPhoneBookSource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchString" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchPhoneBookSourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchPhoneBookSourceResult" type="tns:ArrayOfPhoneBookContact" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPhoneBookContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PhoneBookContact" nillable="true" type="tns:PhoneBookContact" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneBookContact">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactMethods" type="tns:ArrayOfPhoneBookContactMethod" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPhoneBookContactMethod">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PhoneBookContactMethod" nillable="true" type="tns:PhoneBookContactMethod" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneBookContactMethod">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:PhoneBookContactMethodType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FQDialString" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Bandwidth" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsRestrictedISDN" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PhoneBookContactMethodType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="None" />
+          <s:enumeration value="TMSSys" />
+          <s:enumeration value="IP" />
+          <s:enumeration value="ISDN" />
+          <s:enumeration value="ISDN2" />
+          <s:enumeration value="Voice" />
+          <s:enumeration value="H323" />
+          <s:enumeration value="SIP" />
+          <s:enumeration value="Tel3G" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetPhoneBookSourceContacts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="MaxResults" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Offset" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhoneBookSourceContactsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPhoneBookSourceContactsResult" type="tns:ArrayOfPhoneBookContact" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateContactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateContactResult" type="tns:PhoneBookContact" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ContactId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenameContactResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ContactId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteContactResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CreateContactMethod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SourceId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ContactId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ContactMethodType" type="tns:PhoneBookContactMethodType" />
+            <s:element minOccurs="0" maxOccurs="1" name="DialString1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DialString2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DialString3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DialString4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Bandwidth" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateContactMethodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateContactMethodResult" type="tns:PhoneBookContactMethod" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteContactMethod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ContactId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ContactMethodId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteContactMethodResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddPhoneBookToSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="systemId" type="tns:SystemId" />
+            <s:element minOccurs="0" maxOccurs="1" name="phoneBookId" type="tns:PhoneBookId" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SystemId">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TMSLongId" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TMSLongId" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PhoneBookId">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TMSIntId" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TMSIntId" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddPhoneBookToSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddSystemsToPhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phoneBookId" type="tns:PhoneBookId" />
+            <s:element minOccurs="0" maxOccurs="1" name="systemIds" type="tns:ArrayOfSystemId" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSystemId">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SystemId" nillable="true" type="tns:SystemId" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddSystemsToPhoneBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemovePhoneBooksFromSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="tns:SystemId" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemovePhoneBooksFromSystemResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveSystemsFromPhoneBook">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phoneBookId" type="tns:PhoneBookId" />
+            <s:element minOccurs="0" maxOccurs="1" name="systemIds" type="tns:ArrayOfSystemId" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveSystemsFromPhoneBookResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPhoneBooksForSystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="systemId" type="tns:SystemId" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhoneBooksForSystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPhoneBooksForSystemResult" type="tns:ArrayOfPhoneBookId" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPhoneBookId">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PhoneBookId" nillable="true" type="tns:PhoneBookId" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTmsServerInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTmsServerInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTmsServerInfoResult" type="tns:TmsServerInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TmsServerInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DatabaseHost" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DatabaseInstance" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PingSoapIn">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="PingSoapOut">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPhoneBooksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPhoneBooks" />
+  </wsdl:message>
+  <wsdl:message name="GetPhoneBooksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPhoneBooksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourcesForPhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourcesForPhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="GetSourcesForPhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourcesForPhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="CreatePhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="RenamePhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:RenamePhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="RenamePhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:RenamePhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletePhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletePhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="DeletePhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletePhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="MovePhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:MovePhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="MovePhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:MovePhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="BindSourceToPhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:BindSourceToPhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="BindSourceToPhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:BindSourceToPhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnbindSourceFromPhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:UnbindSourceFromPhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="UnbindSourceFromPhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:UnbindSourceFromPhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourcesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSources" />
+  </wsdl:message>
+  <wsdl:message name="GetSourcesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourcesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceParametersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSourceParameters" />
+  </wsdl:message>
+  <wsdl:message name="GetSourceParametersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSourceParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteSource" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateSource" />
+  </wsdl:message>
+  <wsdl:message name="CreateSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateSource" />
+  </wsdl:message>
+  <wsdl:message name="UpdateSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="RenameSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:RenameSource" />
+  </wsdl:message>
+  <wsdl:message name="RenameSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:RenameSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchPhoneBookSourceSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchPhoneBookSource" />
+  </wsdl:message>
+  <wsdl:message name="SearchPhoneBookSourceSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchPhoneBookSourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPhoneBookSourceContactsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPhoneBookSourceContacts" />
+  </wsdl:message>
+  <wsdl:message name="GetPhoneBookSourceContactsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPhoneBookSourceContactsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateContactSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateContact" />
+  </wsdl:message>
+  <wsdl:message name="CreateContactSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="RenameContactSoapIn">
+    <wsdl:part name="parameters" element="tns:RenameContact" />
+  </wsdl:message>
+  <wsdl:message name="RenameContactSoapOut">
+    <wsdl:part name="parameters" element="tns:RenameContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContactSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteContact" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContactSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateContactMethodSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateContactMethod" />
+  </wsdl:message>
+  <wsdl:message name="CreateContactMethodSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateContactMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContactMethodSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteContactMethod" />
+  </wsdl:message>
+  <wsdl:message name="DeleteContactMethodSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteContactMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddPhoneBookToSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:AddPhoneBookToSystem" />
+  </wsdl:message>
+  <wsdl:message name="AddPhoneBookToSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:AddPhoneBookToSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddSystemsToPhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSystemsToPhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="AddSystemsToPhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSystemsToPhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemovePhoneBooksFromSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:RemovePhoneBooksFromSystem" />
+  </wsdl:message>
+  <wsdl:message name="RemovePhoneBooksFromSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:RemovePhoneBooksFromSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveSystemsFromPhoneBookSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveSystemsFromPhoneBook" />
+  </wsdl:message>
+  <wsdl:message name="RemoveSystemsFromPhoneBookSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveSystemsFromPhoneBookResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPhoneBooksForSystemSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPhoneBooksForSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetPhoneBooksForSystemSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPhoneBooksForSystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTmsServerInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTmsServerInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetTmsServerInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTmsServerInfoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PhoneBookServiceSoap">
+    <wsdl:operation name="Ping">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the TMS version</wsdl:documentation>
+      <wsdl:input message="tns:PingSoapIn" />
+      <wsdl:output message="tns:PingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBooks">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all Phone Books.</wsdl:documentation>
+      <wsdl:input message="tns:GetPhoneBooksSoapIn" />
+      <wsdl:output message="tns:GetPhoneBooksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourcesForPhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all sources associated with a Phone Book and their individual status.</wsdl:documentation>
+      <wsdl:input message="tns:GetSourcesForPhoneBookSoapIn" />
+      <wsdl:output message="tns:GetSourcesForPhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a Phone Book. Set parentPhoneBookId to -1 to create a top-level Phone Book.</wsdl:documentation>
+      <wsdl:input message="tns:CreatePhoneBookSoapIn" />
+      <wsdl:output message="tns:CreatePhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RenamePhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Renames a Phone Book.</wsdl:documentation>
+      <wsdl:input message="tns:RenamePhoneBookSoapIn" />
+      <wsdl:output message="tns:RenamePhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a Phone Book.</wsdl:documentation>
+      <wsdl:input message="tns:DeletePhoneBookSoapIn" />
+      <wsdl:output message="tns:DeletePhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MovePhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Relocate a Phone Book. Set parentPhoneBookId to -1 to assign as a top-level Phone Book.</wsdl:documentation>
+      <wsdl:input message="tns:MovePhoneBookSoapIn" />
+      <wsdl:output message="tns:MovePhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BindSourceToPhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Bind a Source to a Phone Book. The opeartion is completed as a background task.</wsdl:documentation>
+      <wsdl:input message="tns:BindSourceToPhoneBookSoapIn" />
+      <wsdl:output message="tns:BindSourceToPhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnbindSourceFromPhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Unbind a Source from a Phone Book. The opeartion is completed as a background task.</wsdl:documentation>
+      <wsdl:input message="tns:UnbindSourceFromPhoneBookSoapIn" />
+      <wsdl:output message="tns:UnbindSourceFromPhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSources">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns all available Phone Book Sources.</wsdl:documentation>
+      <wsdl:input message="tns:GetSourcesSoapIn" />
+      <wsdl:output message="tns:GetSourcesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceParameters">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns settings for a Phone Book Source.</wsdl:documentation>
+      <wsdl:input message="tns:GetSourceParametersSoapIn" />
+      <wsdl:output message="tns:GetSourceParametersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSource">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a Phone Book Source.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteSourceSoapIn" />
+      <wsdl:output message="tns:DeleteSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateSource">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates a Phone Book Source. Id in 'source' is ignored.</wsdl:documentation>
+      <wsdl:input message="tns:CreateSourceSoapIn" />
+      <wsdl:output message="tns:CreateSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSource">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Updates a Phone Book Source.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateSourceSoapIn" />
+      <wsdl:output message="tns:UpdateSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RenameSource">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Rename a Phone Book Source.</wsdl:documentation>
+      <wsdl:input message="tns:RenameSourceSoapIn" />
+      <wsdl:output message="tns:RenameSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchPhoneBookSource">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search a Phone Book Source.</wsdl:documentation>
+      <wsdl:input message="tns:SearchPhoneBookSourceSoapIn" />
+      <wsdl:output message="tns:SearchPhoneBookSourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBookSourceContacts">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Read contacts imported from the given source.</wsdl:documentation>
+      <wsdl:input message="tns:GetPhoneBookSourceContactsSoapIn" />
+      <wsdl:output message="tns:GetPhoneBookSourceContactsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateContact">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a Phone Book Contact entry. (Only valid for Manual List Sources)</wsdl:documentation>
+      <wsdl:input message="tns:CreateContactSoapIn" />
+      <wsdl:output message="tns:CreateContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RenameContact">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Renames a Phone Book Contact entry. (Only valid for Contacts in a Manual List Sources)</wsdl:documentation>
+      <wsdl:input message="tns:RenameContactSoapIn" />
+      <wsdl:output message="tns:RenameContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContact">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a Phone Book Contact entry. (Only valid for Contacts in a Manual List Sources)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteContactSoapIn" />
+      <wsdl:output message="tns:DeleteContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateContactMethod">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a Contact Method. (Only valid for Contacts in a Manual List)</wsdl:documentation>
+      <wsdl:input message="tns:CreateContactMethodSoapIn" />
+      <wsdl:output message="tns:CreateContactMethodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContactMethod">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete a Contact Method. (Only valid for Contacts in a Manual List)</wsdl:documentation>
+      <wsdl:input message="tns:DeleteContactMethodSoapIn" />
+      <wsdl:output message="tns:DeleteContactMethodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddPhoneBookToSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add Phone Book to System</wsdl:documentation>
+      <wsdl:input message="tns:AddPhoneBookToSystemSoapIn" />
+      <wsdl:output message="tns:AddPhoneBookToSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSystemsToPhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Add Phone Book to Systems</wsdl:documentation>
+      <wsdl:input message="tns:AddSystemsToPhoneBookSoapIn" />
+      <wsdl:output message="tns:AddSystemsToPhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePhoneBooksFromSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove all Phone Books from System</wsdl:documentation>
+      <wsdl:input message="tns:RemovePhoneBooksFromSystemSoapIn" />
+      <wsdl:output message="tns:RemovePhoneBooksFromSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSystemsFromPhoneBook">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Remove Phone Book from Systems</wsdl:documentation>
+      <wsdl:input message="tns:RemoveSystemsFromPhoneBookSoapIn" />
+      <wsdl:output message="tns:RemoveSystemsFromPhoneBookSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBooksForSystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Phone Books for System</wsdl:documentation>
+      <wsdl:input message="tns:GetPhoneBooksForSystemSoapIn" />
+      <wsdl:output message="tns:GetPhoneBooksForSystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTmsServerInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns TMS database information</wsdl:documentation>
+      <wsdl:input message="tns:GetTmsServerInfoSoapIn" />
+      <wsdl:output message="tns:GetTmsServerInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PhoneBookServiceSoap" type="tns:PhoneBookServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/Ping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBooks">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetPhoneBooks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourcesForPhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetSourcesForPhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreatePhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenamePhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RenamePhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeletePhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MovePhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/MovePhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindSourceToPhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/BindSourceToPhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnbindSourceFromPhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/UnbindSourceFromPhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSources">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetSources" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceParameters">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetSourceParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSource">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeleteSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSource">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreateSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSource">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/UpdateSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameSource">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RenameSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPhoneBookSource">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/SearchPhoneBookSource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBookSourceContacts">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetPhoneBookSourceContacts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateContact">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreateContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameContact">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RenameContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContact">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeleteContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateContactMethod">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreateContactMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContactMethod">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeleteContactMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPhoneBookToSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/AddPhoneBookToSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSystemsToPhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/AddSystemsToPhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePhoneBooksFromSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RemovePhoneBooksFromSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSystemsFromPhoneBook">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RemoveSystemsFromPhoneBook" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBooksForSystem">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetPhoneBooksForSystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTmsServerInfo">
+      <soap:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetTmsServerInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PhoneBookServiceSoap12" type="tns:PhoneBookServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBooks">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetPhoneBooks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourcesForPhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetSourcesForPhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreatePhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenamePhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RenamePhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeletePhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MovePhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/MovePhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindSourceToPhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/BindSourceToPhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnbindSourceFromPhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/UnbindSourceFromPhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSources">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetSources" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceParameters">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetSourceParameters" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSource">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeleteSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateSource">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreateSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSource">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/UpdateSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameSource">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RenameSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPhoneBookSource">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/SearchPhoneBookSource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBookSourceContacts">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetPhoneBookSourceContacts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateContact">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreateContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenameContact">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RenameContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContact">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeleteContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateContactMethod">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/CreateContactMethod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContactMethod">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/DeleteContactMethod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddPhoneBookToSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/AddPhoneBookToSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSystemsToPhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/AddSystemsToPhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePhoneBooksFromSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RemovePhoneBooksFromSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveSystemsFromPhoneBook">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/RemoveSystemsFromPhoneBook" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhoneBooksForSystem">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetPhoneBooksForSystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTmsServerInfo">
+      <soap12:operation soapAction="http://www.tandberg.com/TMS/PhoneBookService/1.0/GetTmsServerInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PhoneBookService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This is the TMS external phonebook service. NOTE: API under continous development and may change without notice. Not for external use!</wsdl:documentation>
+    <wsdl:port name="PhoneBookServiceSoap" binding="tns:PhoneBookServiceSoap">
+      <soap:address location="http://dsoserver:82/tms/external/phonebook/phonebookservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PhoneBookServiceSoap12" binding="tns:PhoneBookServiceSoap12">
+      <soap12:address location="http://dsoserver:82/tms/external/phonebook/phonebookservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

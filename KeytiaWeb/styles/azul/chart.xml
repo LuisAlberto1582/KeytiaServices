@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Chart xmlns="http://tempuri.org/chart.xsd"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://tempuri.org/chart.xsd ../chart.xsd">
+  <Palette name="None">
+    <Color value="#5b728c"/>
+    <Color value="#975b5a"/>
+    <Color value="#dcad5c"/>
+    <Color value="#54734a"/>
+    <Color value="#575958"/>
+    <Color value="#6a5b7d"/>
+    <Color value="Red"/>
+    <Color value="Green"/>
+    <Color value="Blue"/>
+    <Color value="Yellow"/>
+    <Color value="Orange"/>
+    <Color value="Purple"/>
+    <Color value="Black"/>
+  </Palette>
+
+  <ChartColumn>
+    <TitleFont name="Arial" color="#5b728c" size="12" style="Bold"/>
+    <XTitleFont name="Arial" color="Blue" size="8" style="Bold"/>
+    <YTitleFont name="Arial" color="Blue" size="8" style="Bold"/>
+    <Area3D enabled="false" />
+  </ChartColumn>
+</Chart>

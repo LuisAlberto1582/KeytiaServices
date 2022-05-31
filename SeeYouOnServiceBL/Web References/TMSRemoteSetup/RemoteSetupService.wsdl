@@ -1,0 +1,1146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tandberg.net/2004/02/tms/external/booking/remotesetup/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tandberg.net/2004/02/tms/external/booking/remotesetup/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RemoteSetupService, is a utility service used to create and delete Booking API users, get system details and check server status.&lt;br&gt;&lt;br&gt;This service is typically used during installation and deinstallation of 3rd Party Booking Integrations.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tandberg.net/2004/02/tms/external/booking/remotesetup/">
+      <s:element name="SetPrimarySystem">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="primSys" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPrimarySystemResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetPrimarySystemResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExternalAPIVersionSoapHeader" type="tns:ExternalAPIVersionSoapHeader" />
+      <s:complexType name="ExternalAPIVersionSoapHeader">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ClientVersionIn" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientIdentifierIn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientLatestNamespaceIn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewServiceURL" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersResult" type="tns:ArrayOfUser" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUser">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="User">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DisplayName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsHiddenUser" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeZone">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TimezoneName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartTimeDTS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTimeDTS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GMTOffset" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetSystemsForUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemsForUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemsForUserResult" type="tns:ArrayOfTMSSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTMSSystem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TMSSystem" nillable="true" type="tns:TMSSystem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TMSSystem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SystemId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Contact" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Manufacturer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NetworkAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISDNNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WebInterfaceURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SIPUri" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="H323Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="E164Alias" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TimeZone" type="tns:TimeZone" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemCategory" type="tns:SystemCategoryOverride" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemStatus" type="tns:SystemStatusOverride" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SystemCategoryOverride">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="systemCategory" type="tns:SystemCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SystemCategory">
+        <s:restriction base="s:string">
+          <s:enumeration value="Endpoint" />
+          <s:enumeration value="Equipment" />
+          <s:enumeration value="Room" />
+          <s:enumeration value="Recording" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SystemStatusOverride">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="systemStatus" type="tns:SystemStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SystemStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Alive" />
+          <s:enumeration value="Idle" />
+          <s:enumeration value="InCall" />
+          <s:enumeration value="NoResponse" />
+          <s:enumeration value="Unknown" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetSystems">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemsResult" type="tns:ArrayOfTMSSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TMSSystemId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemByIdResult" type="tns:TMSSystem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateConferenceAPIUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userNameBase" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="encPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendNotifications" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateConferenceAPIUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GenerateConferenceAPIUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableConferenceAPIUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisableConferenceAPIUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsAlive">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsAliveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsAliveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsTMSSiteAdmin">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsTMSSiteAdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsTMSSiteAdminResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsTMSServiceUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsTMSServiceUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsTMSServiceUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsTMSBookOnBehalfUser">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsTMSBookOnBehalfUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsTMSBookOnBehalfUserResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLocalAdmin">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsLocalAdminResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsLocalAdminResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+      <s:element name="ArrayOfTMSSystem" nillable="true" type="tns:ArrayOfTMSSystem" />
+      <s:element name="TMSSystem" nillable="true" type="tns:TMSSystem" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SetPrimarySystemSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPrimarySystem" />
+  </wsdl:message>
+  <wsdl:message name="SetPrimarySystemSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPrimarySystemResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPrimarySystemExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsForUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemsForUser" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsForUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemsForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsForUserExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystems" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemById" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemByIdExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="GenerateConferenceAPIUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateConferenceAPIUser" />
+  </wsdl:message>
+  <wsdl:message name="GenerateConferenceAPIUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateConferenceAPIUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateConferenceAPIUserExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="DisableConferenceAPIUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DisableConferenceAPIUser" />
+  </wsdl:message>
+  <wsdl:message name="DisableConferenceAPIUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DisableConferenceAPIUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DisableConferenceAPIUserExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveSoapIn">
+    <wsdl:part name="parameters" element="tns:IsAlive" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveSoapOut">
+    <wsdl:part name="parameters" element="tns:IsAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsAliveExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSSiteAdminSoapIn">
+    <wsdl:part name="parameters" element="tns:IsTMSSiteAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSSiteAdminSoapOut">
+    <wsdl:part name="parameters" element="tns:IsTMSSiteAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSSiteAdminExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSServiceUserSoapIn">
+    <wsdl:part name="parameters" element="tns:IsTMSServiceUser" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSServiceUserSoapOut">
+    <wsdl:part name="parameters" element="tns:IsTMSServiceUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSServiceUserExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSBookOnBehalfUserSoapIn">
+    <wsdl:part name="parameters" element="tns:IsTMSBookOnBehalfUser" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSBookOnBehalfUserSoapOut">
+    <wsdl:part name="parameters" element="tns:IsTMSBookOnBehalfUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSBookOnBehalfUserExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="IsLocalAdminSoapIn">
+    <wsdl:part name="parameters" element="tns:IsLocalAdmin" />
+  </wsdl:message>
+  <wsdl:message name="IsLocalAdminSoapOut">
+    <wsdl:part name="parameters" element="tns:IsLocalAdminResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsLocalAdminExternalAPIVersionSoapHeader">
+    <wsdl:part name="ExternalAPIVersionSoapHeader" element="tns:ExternalAPIVersionSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="SetPrimarySystemHttpGetIn">
+    <wsdl:part name="primSys" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetPrimarySystemHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersHttpGetIn" />
+  <wsdl:message name="GetUsersHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUser" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsForUserHttpGetIn" />
+  <wsdl:message name="GetSystemsForUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTMSSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsHttpGetIn" />
+  <wsdl:message name="GetSystemsHttpGetOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTMSSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemByIdHttpGetIn">
+    <wsdl:part name="TMSSystemId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemByIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:TMSSystem" />
+  </wsdl:message>
+  <wsdl:message name="GenerateConferenceAPIUserHttpGetIn">
+    <wsdl:part name="userNameBase" type="s:string" />
+    <wsdl:part name="encPassword" type="s:string" />
+    <wsdl:part name="emailAddress" type="s:string" />
+    <wsdl:part name="sendNotifications" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateConferenceAPIUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DisableConferenceAPIUserHttpGetIn">
+    <wsdl:part name="userName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DisableConferenceAPIUserHttpGetOut" />
+  <wsdl:message name="IsAliveHttpGetIn" />
+  <wsdl:message name="IsAliveHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSSiteAdminHttpGetIn" />
+  <wsdl:message name="IsTMSSiteAdminHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSServiceUserHttpGetIn" />
+  <wsdl:message name="IsTMSServiceUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSBookOnBehalfUserHttpGetIn" />
+  <wsdl:message name="IsTMSBookOnBehalfUserHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsLocalAdminHttpGetIn" />
+  <wsdl:message name="IsLocalAdminHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="SetPrimarySystemHttpPostIn">
+    <wsdl:part name="primSys" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetPrimarySystemHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersHttpPostIn" />
+  <wsdl:message name="GetUsersHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfUser" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsForUserHttpPostIn" />
+  <wsdl:message name="GetSystemsForUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTMSSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemsHttpPostIn" />
+  <wsdl:message name="GetSystemsHttpPostOut">
+    <wsdl:part name="Body" element="tns:ArrayOfTMSSystem" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemByIdHttpPostIn">
+    <wsdl:part name="TMSSystemId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemByIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:TMSSystem" />
+  </wsdl:message>
+  <wsdl:message name="GenerateConferenceAPIUserHttpPostIn">
+    <wsdl:part name="userNameBase" type="s:string" />
+    <wsdl:part name="encPassword" type="s:string" />
+    <wsdl:part name="emailAddress" type="s:string" />
+    <wsdl:part name="sendNotifications" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GenerateConferenceAPIUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DisableConferenceAPIUserHttpPostIn">
+    <wsdl:part name="userName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DisableConferenceAPIUserHttpPostOut" />
+  <wsdl:message name="IsAliveHttpPostIn" />
+  <wsdl:message name="IsAliveHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSSiteAdminHttpPostIn" />
+  <wsdl:message name="IsTMSSiteAdminHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSServiceUserHttpPostIn" />
+  <wsdl:message name="IsTMSServiceUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsTMSBookOnBehalfUserHttpPostIn" />
+  <wsdl:message name="IsTMSBookOnBehalfUserHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="IsLocalAdminHttpPostIn" />
+  <wsdl:message name="IsLocalAdminHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="RemoteSetupServiceSoap">
+    <wsdl:operation name="SetPrimarySystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns true if it is possible to set the Primary System for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:SetPrimarySystemSoapIn" />
+      <wsdl:output message="tns:SetPrimarySystemSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked by the current user. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersSoapIn" />
+      <wsdl:output message="tns:GetUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked by the current user. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemsForUserSoapIn" />
+      <wsdl:output message="tns:GetSystemsForUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemsSoapIn" />
+      <wsdl:output message="tns:GetSystemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns information about a specific system. If the system is not found an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;TMSSystemId - system Id as given in TMS.&lt;br&gt;&lt;br&gt;Returns a TMSSystem object.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemByIdSoapIn" />
+      <wsdl:output message="tns:GetSystemByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateConferenceAPIUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generates a TMS Booking API account in the default user container of the TMS server, along with registrating the user in TMS (as a hidden user not in normal user lists). The user is added to the Site Administrator Group. The user is configured to receive e-mail scheduling event notifications for all creation/update/deletions of bookings. This method is used during installation to create a seperate user for the booking API. The current user must be a TMS Site Administrator, along with being a local computer Administrator in order for the method to complete. The e-mail scheduling event notifications are typically used for updating the external booking system with changes done on the TMS server.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userNameBase - The base portion of the user name. If a user with the name already exists a numeric postfix is added (e.g tms-confuser ==&gt; tms-confuser1).&lt;br&gt;encPassword - A base64 encoded password that is to be used for the newly created user.&lt;br&gt;emailAddress - The email address of the user.&lt;br&gt;sendNotifications - If the user shall receive scheduling notifications.&lt;br&gt;&lt;br&gt;Returns the user name of the created user (NT4 domain/username style).</wsdl:documentation>
+      <wsdl:input message="tns:GenerateConferenceAPIUserSoapIn" />
+      <wsdl:output message="tns:GenerateConferenceAPIUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableConferenceAPIUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Used to disable a ConferenceAPI user. E-mail notifications for the user is disabled, and the user is removed from all groups in TMS but the Users group. This is done to keep references valid. The user logged in when executing this method must be a TMS Site Administrator&lt;br&gt;&lt;br&gt;This function is typically used during uninstall procedures.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userName - the full user name in NT4 style (domain\username) of the user to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DisableConferenceAPIUserSoapIn" />
+      <wsdl:output message="tns:DisableConferenceAPIUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Used to check the connection to the web-service. Typically used during installation to check the URL to this web-service.</wsdl:documentation>
+      <wsdl:input message="tns:IsAliveSoapIn" />
+      <wsdl:output message="tns:IsAliveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSSiteAdmin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is a member of the TMS Site Administrators group. This is typically used during installation to check if the user installing the integration has enough access towards the TMS server. This method should return True in order for the GenerateConferenceAPIUser method to succseed.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False. True if the user is a TMS Site Administrator</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSSiteAdminSoapIn" />
+      <wsdl:output message="tns:IsTMSSiteAdminSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSServiceUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is flagged as an Exchange Integration user and has access to book on behalf of other users.This is typically used during installation to check if the user installing the integration has enough access towards the TMS server.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False.</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSServiceUserSoapIn" />
+      <wsdl:output message="tns:IsTMSServiceUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSBookOnBehalfUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is is a memeber of as group which has access to book on behalf of other users.This is typically used during installation to check if the user installing the integration has enough access towards the TMS server.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False.</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSBookOnBehalfUserSoapIn" />
+      <wsdl:output message="tns:IsTMSBookOnBehalfUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLocalAdmin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user can create local / Active Directory accounts in the default user container on the TMS server. This is typically used during installation to check if the user installing the integration has enough access towards the TMS server. This method should return True in order for the GenerateConferenceAPIUser method to succseed.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False. True if the user is a local admin user</wsdl:documentation>
+      <wsdl:input message="tns:IsLocalAdminSoapIn" />
+      <wsdl:output message="tns:IsLocalAdminSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="RemoteSetupServiceHttpGet">
+    <wsdl:operation name="SetPrimarySystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns true if it is possible to set the Primary System for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:SetPrimarySystemHttpGetIn" />
+      <wsdl:output message="tns:SetPrimarySystemHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked by the current user. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersHttpGetIn" />
+      <wsdl:output message="tns:GetUsersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked by the current user. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemsForUserHttpGetIn" />
+      <wsdl:output message="tns:GetSystemsForUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemsHttpGetIn" />
+      <wsdl:output message="tns:GetSystemsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns information about a specific system. If the system is not found an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;TMSSystemId - system Id as given in TMS.&lt;br&gt;&lt;br&gt;Returns a TMSSystem object.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemByIdHttpGetIn" />
+      <wsdl:output message="tns:GetSystemByIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateConferenceAPIUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generates a TMS Booking API account in the default user container of the TMS server, along with registrating the user in TMS (as a hidden user not in normal user lists). The user is added to the Site Administrator Group. The user is configured to receive e-mail scheduling event notifications for all creation/update/deletions of bookings. This method is used during installation to create a seperate user for the booking API. The current user must be a TMS Site Administrator, along with being a local computer Administrator in order for the method to complete. The e-mail scheduling event notifications are typically used for updating the external booking system with changes done on the TMS server.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userNameBase - The base portion of the user name. If a user with the name already exists a numeric postfix is added (e.g tms-confuser ==&gt; tms-confuser1).&lt;br&gt;encPassword - A base64 encoded password that is to be used for the newly created user.&lt;br&gt;emailAddress - The email address of the user.&lt;br&gt;sendNotifications - If the user shall receive scheduling notifications.&lt;br&gt;&lt;br&gt;Returns the user name of the created user (NT4 domain/username style).</wsdl:documentation>
+      <wsdl:input message="tns:GenerateConferenceAPIUserHttpGetIn" />
+      <wsdl:output message="tns:GenerateConferenceAPIUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableConferenceAPIUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Used to disable a ConferenceAPI user. E-mail notifications for the user is disabled, and the user is removed from all groups in TMS but the Users group. This is done to keep references valid. The user logged in when executing this method must be a TMS Site Administrator&lt;br&gt;&lt;br&gt;This function is typically used during uninstall procedures.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userName - the full user name in NT4 style (domain\username) of the user to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DisableConferenceAPIUserHttpGetIn" />
+      <wsdl:output message="tns:DisableConferenceAPIUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Used to check the connection to the web-service. Typically used during installation to check the URL to this web-service.</wsdl:documentation>
+      <wsdl:input message="tns:IsAliveHttpGetIn" />
+      <wsdl:output message="tns:IsAliveHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSSiteAdmin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is a member of the TMS Site Administrators group. This is typically used during installation to check if the user installing the integration has enough access towards the TMS server. This method should return True in order for the GenerateConferenceAPIUser method to succseed.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False. True if the user is a TMS Site Administrator</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSSiteAdminHttpGetIn" />
+      <wsdl:output message="tns:IsTMSSiteAdminHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSServiceUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is flagged as an Exchange Integration user and has access to book on behalf of other users.This is typically used during installation to check if the user installing the integration has enough access towards the TMS server.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False.</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSServiceUserHttpGetIn" />
+      <wsdl:output message="tns:IsTMSServiceUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSBookOnBehalfUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is is a memeber of as group which has access to book on behalf of other users.This is typically used during installation to check if the user installing the integration has enough access towards the TMS server.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False.</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSBookOnBehalfUserHttpGetIn" />
+      <wsdl:output message="tns:IsTMSBookOnBehalfUserHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLocalAdmin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user can create local / Active Directory accounts in the default user container on the TMS server. This is typically used during installation to check if the user installing the integration has enough access towards the TMS server. This method should return True in order for the GenerateConferenceAPIUser method to succseed.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False. True if the user is a local admin user</wsdl:documentation>
+      <wsdl:input message="tns:IsLocalAdminHttpGetIn" />
+      <wsdl:output message="tns:IsLocalAdminHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="RemoteSetupServiceHttpPost">
+    <wsdl:operation name="SetPrimarySystem">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns true if it is possible to set the Primary System for the current user.</wsdl:documentation>
+      <wsdl:input message="tns:SetPrimarySystemHttpPostIn" />
+      <wsdl:output message="tns:SetPrimarySystemHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked by the current user. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetUsersHttpPostIn" />
+      <wsdl:output message="tns:GetUsersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsForUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked by the current user. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemsForUserHttpPostIn" />
+      <wsdl:output message="tns:GetSystemsForUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystems">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an array of ExTMSSystem objects, including all endpoints and rooms that can be booked. Typically used during set-up of resources in the external booking system - to connect resources in TMS with resourcess in the external booking system.&lt;br&gt;&lt;br&gt;Returns an array of TMSSystem objects.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemsHttpPostIn" />
+      <wsdl:output message="tns:GetSystemsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns information about a specific system. If the system is not found an exception is thrown.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;TMSSystemId - system Id as given in TMS.&lt;br&gt;&lt;br&gt;Returns a TMSSystem object.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemByIdHttpPostIn" />
+      <wsdl:output message="tns:GetSystemByIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateConferenceAPIUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Generates a TMS Booking API account in the default user container of the TMS server, along with registrating the user in TMS (as a hidden user not in normal user lists). The user is added to the Site Administrator Group. The user is configured to receive e-mail scheduling event notifications for all creation/update/deletions of bookings. This method is used during installation to create a seperate user for the booking API. The current user must be a TMS Site Administrator, along with being a local computer Administrator in order for the method to complete. The e-mail scheduling event notifications are typically used for updating the external booking system with changes done on the TMS server.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userNameBase - The base portion of the user name. If a user with the name already exists a numeric postfix is added (e.g tms-confuser ==&gt; tms-confuser1).&lt;br&gt;encPassword - A base64 encoded password that is to be used for the newly created user.&lt;br&gt;emailAddress - The email address of the user.&lt;br&gt;sendNotifications - If the user shall receive scheduling notifications.&lt;br&gt;&lt;br&gt;Returns the user name of the created user (NT4 domain/username style).</wsdl:documentation>
+      <wsdl:input message="tns:GenerateConferenceAPIUserHttpPostIn" />
+      <wsdl:output message="tns:GenerateConferenceAPIUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableConferenceAPIUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Used to disable a ConferenceAPI user. E-mail notifications for the user is disabled, and the user is removed from all groups in TMS but the Users group. This is done to keep references valid. The user logged in when executing this method must be a TMS Site Administrator&lt;br&gt;&lt;br&gt;This function is typically used during uninstall procedures.&lt;br&gt;&lt;br&gt;Input:&lt;br&gt;userName - the full user name in NT4 style (domain\username) of the user to delete.</wsdl:documentation>
+      <wsdl:input message="tns:DisableConferenceAPIUserHttpPostIn" />
+      <wsdl:output message="tns:DisableConferenceAPIUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Used to check the connection to the web-service. Typically used during installation to check the URL to this web-service.</wsdl:documentation>
+      <wsdl:input message="tns:IsAliveHttpPostIn" />
+      <wsdl:output message="tns:IsAliveHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSSiteAdmin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is a member of the TMS Site Administrators group. This is typically used during installation to check if the user installing the integration has enough access towards the TMS server. This method should return True in order for the GenerateConferenceAPIUser method to succseed.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False. True if the user is a TMS Site Administrator</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSSiteAdminHttpPostIn" />
+      <wsdl:output message="tns:IsTMSSiteAdminHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSServiceUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is flagged as an Exchange Integration user and has access to book on behalf of other users.This is typically used during installation to check if the user installing the integration has enough access towards the TMS server.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False.</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSServiceUserHttpPostIn" />
+      <wsdl:output message="tns:IsTMSServiceUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSBookOnBehalfUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user is is a memeber of as group which has access to book on behalf of other users.This is typically used during installation to check if the user installing the integration has enough access towards the TMS server.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False.</wsdl:documentation>
+      <wsdl:input message="tns:IsTMSBookOnBehalfUserHttpPostIn" />
+      <wsdl:output message="tns:IsTMSBookOnBehalfUserHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLocalAdmin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Checks if the current user can create local / Active Directory accounts in the default user container on the TMS server. This is typically used during installation to check if the user installing the integration has enough access towards the TMS server. This method should return True in order for the GenerateConferenceAPIUser method to succseed.&lt;br&gt;&lt;br&gt;Returns a boolean value True/False. True if the user is a local admin user</wsdl:documentation>
+      <wsdl:input message="tns:IsLocalAdminHttpPostIn" />
+      <wsdl:output message="tns:IsLocalAdminHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RemoteSetupServiceSoap" type="tns:RemoteSetupServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetPrimarySystem">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/SetPrimarySystem" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetPrimarySystemExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:SetPrimarySystemExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUsersExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetUsersExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsForUser">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetSystemsForUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemsForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemsForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystems">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetSystems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemById">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetSystemById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSystemByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateConferenceAPIUser">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GenerateConferenceAPIUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GenerateConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:GenerateConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableConferenceAPIUser">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/DisableConferenceAPIUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DisableConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:DisableConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsAlive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsAliveExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsAliveExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSSiteAdmin">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsTMSSiteAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsTMSSiteAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsTMSSiteAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSServiceUser">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsTMSServiceUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsTMSServiceUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsTMSServiceUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSBookOnBehalfUser">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsTMSBookOnBehalfUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsTMSBookOnBehalfUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsTMSBookOnBehalfUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLocalAdmin">
+      <soap:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsLocalAdmin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsLocalAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsLocalAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RemoteSetupServiceSoap12" type="tns:RemoteSetupServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SetPrimarySystem">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/SetPrimarySystem" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetPrimarySystemExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SetPrimarySystemExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUsersExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetUsersExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsForUser">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetSystemsForUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemsForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemsForUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystems">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetSystems" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemsExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemById">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GetSystemById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSystemByIdExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateConferenceAPIUser">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/GenerateConferenceAPIUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GenerateConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GenerateConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableConferenceAPIUser">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/DisableConferenceAPIUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DisableConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DisableConferenceAPIUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsAlive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsAliveExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsAliveExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSSiteAdmin">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsTMSSiteAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsTMSSiteAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsTMSSiteAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSServiceUser">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsTMSServiceUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsTMSServiceUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsTMSServiceUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSBookOnBehalfUser">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsTMSBookOnBehalfUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsTMSBookOnBehalfUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsTMSBookOnBehalfUserExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLocalAdmin">
+      <soap12:operation soapAction="http://tandberg.net/2004/02/tms/external/booking/remotesetup/IsLocalAdmin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsLocalAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsLocalAdminExternalAPIVersionSoapHeader" part="ExternalAPIVersionSoapHeader" use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RemoteSetupServiceHttpGet" type="tns:RemoteSetupServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="SetPrimarySystem">
+      <http:operation location="/SetPrimarySystem" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <http:operation location="/GetUsers" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsForUser">
+      <http:operation location="/GetSystemsForUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystems">
+      <http:operation location="/GetSystems" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemById">
+      <http:operation location="/GetSystemById" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateConferenceAPIUser">
+      <http:operation location="/GenerateConferenceAPIUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableConferenceAPIUser">
+      <http:operation location="/DisableConferenceAPIUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <http:operation location="/IsAlive" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSSiteAdmin">
+      <http:operation location="/IsTMSSiteAdmin" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSServiceUser">
+      <http:operation location="/IsTMSServiceUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSBookOnBehalfUser">
+      <http:operation location="/IsTMSBookOnBehalfUser" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLocalAdmin">
+      <http:operation location="/IsLocalAdmin" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RemoteSetupServiceHttpPost" type="tns:RemoteSetupServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="SetPrimarySystem">
+      <http:operation location="/SetPrimarySystem" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <http:operation location="/GetUsers" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemsForUser">
+      <http:operation location="/GetSystemsForUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystems">
+      <http:operation location="/GetSystems" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemById">
+      <http:operation location="/GetSystemById" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateConferenceAPIUser">
+      <http:operation location="/GenerateConferenceAPIUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisableConferenceAPIUser">
+      <http:operation location="/DisableConferenceAPIUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="IsAlive">
+      <http:operation location="/IsAlive" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSSiteAdmin">
+      <http:operation location="/IsTMSSiteAdmin" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSServiceUser">
+      <http:operation location="/IsTMSServiceUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsTMSBookOnBehalfUser">
+      <http:operation location="/IsTMSBookOnBehalfUser" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLocalAdmin">
+      <http:operation location="/IsLocalAdmin" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RemoteSetupService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RemoteSetupService, is a utility service used to create and delete Booking API users, get system details and check server status.&lt;br&gt;&lt;br&gt;This service is typically used during installation and deinstallation of 3rd Party Booking Integrations.</wsdl:documentation>
+    <wsdl:port name="RemoteSetupServiceSoap" binding="tns:RemoteSetupServiceSoap">
+      <soap:address location="http://dsoserver:82/tms/external/Booking/RemoteSetup/RemoteSetupService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RemoteSetupServiceSoap12" binding="tns:RemoteSetupServiceSoap12">
+      <soap12:address location="http://dsoserver:82/tms/external/Booking/RemoteSetup/RemoteSetupService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RemoteSetupServiceHttpGet" binding="tns:RemoteSetupServiceHttpGet">
+      <http:address location="http://dsoserver:82/tms/external/Booking/RemoteSetup/RemoteSetupService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RemoteSetupServiceHttpPost" binding="tns:RemoteSetupServiceHttpPost">
+      <http:address location="http://dsoserver:82/tms/external/Booking/RemoteSetup/RemoteSetupService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

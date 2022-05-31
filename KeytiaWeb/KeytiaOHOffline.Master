@@ -1,0 +1,271 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="KeytiaOHOffline.master.cs" Inherits="KeytiaWeb.KeytiaOHOffline" %>
+
+<%@ Register Assembly="KeytiaWeb" Namespace="KeytiaWeb.UserInterface" TagPrefix="cc2" %>
+<%@ Register Assembly="DSOControls2008" Namespace="DSOControls2008" TagPrefix="cc1" %>
+<!DOCTYPE html>
+<html lang="en">
+<head id="Head1" runat="server">
+    <title>Keytia</title>
+    <link rel="SHORTCUT ICON" href="favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+
+    <!-- Se omite el uso de Google analytics -->
+
+    <asp:ContentPlaceHolder ID="cphHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <form id="form1" runat="server">
+        <div style="display: none;">
+            <asp:Button ID="botonDefault" runat="server" />
+        </div>
+        <!-- BEGIN HEADER -->
+        <div class="page-wrapper">
+            <!-- BEGIN HEADER INNER -->
+            <div class="page-header navbar navbar-fixed-top">
+                <div class="page-header-inner ">
+
+                    <!-- BEGIN LOGO -->
+                    <div class="page-logo">
+                        <asp:HyperLink ID="lnkHomePage" runat="server">
+                            <asp:Image ID="imgLogoDefault" runat="server" alt="logo" CssClass="logo-default" />
+                            <asp:Image ID="imgLogoSidebar" runat="server" alt="logo" CssClass="logo-sidebar-closed" />
+                            <asp:Image ID="imgLogoMovil" runat="server" alt="logo" CssClass="logo-mobile" />
+                        </asp:HyperLink>
+
+                        <a href="javascript:;" class="btn-toggler sidebar-toggler btnTogglerBarResponsive" data-toggle="collapse" data-target=".navbar-collapse" style="display: none;">
+                            <li class="fa fa-bars"></li>
+                        </a>
+                    </div>
+                    <!-- END LOGO -->
+
+                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                    <div class="col-sm-1 columna" style="width: 50px;">
+                        <div class="menu-toggler sidebar-toggler btn-toggler btnTogglerBar">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                    </div>
+
+                    <asp:HiddenField ID="hdOpcCollapse" Value="0" runat="server" />
+                    <!-- END RESPONSIVE MENU TOGGLER -->
+
+                    <!-- INICIA LOGO DEL CLIENTE -->
+                    <div class="col-xs-1 col-sm-3 col-md-3 col-lg-4 columna">
+                        <div class="customerLogoDiv">
+                            <asp:Image ID="imgCustomerLogo" runat="server" CssClass="customerLogoImg" />
+                        </div>
+                        <input style="width: 0px; height: 0px; opacity: 0;" type="text" name="username" />
+                        <input style="width: 0px; height: 0px; opacity: 0;" type="password" name="password" />
+                    </div>
+                    <!-- TERMINA LOGO DEL CLIENTE -->
+
+                    <!-- INICIA FECHAS -->
+                    <asp:Panel ID="pnlRangeFechas" runat="server" CssClass="col-xs-auto col-sm-auto col-md-auto col-lg-auto columna">
+                        <div class="fechas-periodo pull-left">
+                            <asp:TextBox ID="txtFechas" runat="server" CssClass="form-control daterange textDateRange" ReadOnly="true" twoCalendar="true"></asp:TextBox>
+                            <asp:Button ID="btnAplicarFecha" runat="server" CssClass="applyDate" Text="Aplicar" OnClick="btnAplicarFecha_Click" />
+                        </div>
+                        <asp:HiddenField ID="hfFechaInicio" runat="server" />
+                        <asp:HiddenField ID="hfFechaFin" runat="server" />
+                    </asp:Panel>
+                    <!-- TERMINA FECHAS -->
+
+                    <!-- INICIA TOP NAVIGATION MENU -->
+                    <div class="col-xs-auto col-sm-auto col-md-auto col-lg-auto columna">
+                        <ul class="nav navbar-nav pull-right">
+                            <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle userButton" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <asp:Image ID="imgAvatar" runat="server" CssClass="img-circle avatarUser" ImageUrl="~/img/AvatarUser2.png" />
+                                    <div class="titleUser">
+                                        <asp:Literal ID="usrName" runat="server"></asp:Literal>
+                                    </div>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default divListUser">
+                                    <li style="border-bottom: 1px solid #EEEEEE;cursor:pointer;">
+                                        <div class="OpcUsuario ui-widget-header">
+                                            <asp:Literal ID="usrNameLI" runat="server"></asp:Literal>
+                                        </div>
+                                    </li>
+                                    <li style="border-bottom: 1px solid #EEEEEE;cursor:pointer;">
+                                        <asp:Panel ID="imgToolUsrPassword" runat="server" CssClass="OpcUsuario">
+                                            <asp:Image ID="imgPwd" runat="server" ImageUrl="~/img/svg/Asset 27.svg" Width="12px" />
+                                            Cambiar contraseña
+                                        </asp:Panel>
+                                    </li>
+                                    <li style="border-bottom: 1px solid #EEEEEE;">
+                                        <asp:Panel ID="imgToolUsrLanguage" runat="server" CssClass="OpcUsuario">
+                                            <asp:Image ID="imgLang" runat="server" ImageUrl="~/img/svg/Asset 20.svg" CssClass="iconSvgUser" />
+                                            Idioma
+                                        </asp:Panel>
+                                    </li>
+                                    <li style="border-bottom: 1px solid #EEEEEE;cursor:pointer;">
+                                        <asp:Panel ID="imgToolUsrCurrency" runat="server" CssClass="OpcUsuario">
+                                            <asp:Image ID="imgCurrency" runat="server" ImageUrl="~/img/svg/Asset 21.svg" CssClass="iconSvgUser" Style="margin-top: -4px;" />
+                                            Cambio de moneda
+                                        </asp:Panel>
+                                    </li>
+                                    <li style="border-bottom: 1px solid #EEEEEE">
+                                        <asp:LinkButton ID="imgToolNavExit" runat="server" CommandName="exit">
+                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/img/svg/Asset 28.svg" CssClass="iconSvgUser" />
+                                            Logout
+                                        </asp:LinkButton>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END TOP NAVIGATION MENU -->
+                </div>
+            </div>
+            <!-- END HEADER INNER -->
+        </div>
+        <!-- END HEADER -->
+
+        <!-- BEGIN HEADER & CONTENT DIVIDER -->
+        <div class="clearfix"></div>
+        <!-- END HEADER & CONTENT DIVIDER -->
+
+        <!-- BEGIN CONTAINER -->
+        <div class="page-container">
+            <!-- BEGIN SIDEBAR -->
+            <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    <cc2:DSONavegador ID="DSONavegador1" runat="server" OrientacionMenu="Horizontal">
+                    </cc2:DSONavegador>
+                </div>
+            </div>
+            <!-- END SIDEBAR -->
+
+            <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <div class="shadow" style="display: none;"></div>
+
+                    <asp:ContentPlaceHolder ID="cphTitle" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                    <asp:ContentPlaceHolder ID="cphContent" runat="server">
+                    </asp:ContentPlaceHolder>
+
+                    <%--NZ: No quitar los br--%>
+                    <br />
+                    <br />
+                    <div class="footer">
+                        <div class="page-footer-fixed text-center">
+                            <div class="copyright" style="margin-top: 14px;">
+                                <a href="http://www.dti.com.mx" target="_blank" class="FooterKeytiaTitle">Keytia® <span id="yearInCourse">
+                                    <asp:Literal ID="infoAño" runat="server"></asp:Literal></span> by DTI</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+        </div>
+        <!-- END CONTAINER -->
+
+        <asp:Image ID="imgTop" runat="server" CssClass="scrollup" />
+
+
+        <cc1:DSOWindow ID="wndLanguage" runat="server" PositionLeft="300" PositionTop="80" Width="500" Height="200" Type="Normal" Draggable="true" Resizeable="false" Display="false" InitOnReady="false" Modal="true" />
+        <asp:Panel runat="server" ID="wndLanguageContent" Style="text-align: center">
+            <br />
+            <asp:Label ID="lblLanguageMsg" runat="server" Text="Label" />
+            <br />
+            <br />
+            <asp:Label ID="lblLanguage" runat="server" Text="Label" />
+            <asp:DropDownList ID="cboLanguage" runat="server" />
+            <br />
+            <br />
+            <asp:Button runat="server" ID="btnLanguageOk" class="button" OnClick="btnLanguageOk_Click" />
+            <asp:Button runat="server" ID="btnLanguageCancel" class="button"
+                OnClick="btnLanguageCancel_Click" />
+        </asp:Panel>
+
+        <cc1:DSOWindow ID="wndCurrency" runat="server" PositionLeft="300" PositionTop="80" Width="500" Height="200" Type="Normal" Draggable="true" Resizeable="false" Display="false" InitOnReady="false" Modal="true" />
+        <asp:Panel runat="server" ID="wndCurrencyContent" Style="text-align: center">
+            <br />
+            <asp:Label ID="lblCurrencyMsg" runat="server" Text="Label" />
+            <br />
+            <br />
+            <asp:Label ID="lblCurrency" runat="server" Text="Label" />
+            <asp:DropDownList ID="cboCurrency" runat="server" />
+            <br />
+            <br />
+            <asp:Button runat="server" ID="btnCurrencyOk" class="button" OnClick="btnCurrencyOk_Click" />
+            <asp:Button runat="server" ID="btnCurrencyCancel" class="button"
+                OnClick="btnCurrencyCancel_Click" />
+        </asp:Panel>
+
+        <cc1:DSOWindow ID="wndPassword" runat="server" PositionLeft="300" PositionTop="80" Width="500" Height="200" Type="Normal" Draggable="true" Resizeable="false" Display="false" InitOnReady="false" Modal="true" />
+        <asp:Panel runat="server" ID="wndPasswordContent">
+            <br />
+            <table align="center">
+                <tr>
+                    <td colspan="2">
+                        <asp:Label ID="lblPasswordMsg" runat="server" Text="Label"></asp:Label></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="lblCurrentPassword" runat="server" Text="Label"></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="txtCurrentPassword" runat="server" TextMode="Password"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="lblNewPassword" runat="server" Text="Label"></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="txtNewPassword" runat="server" TextMode="Password"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="lblNewPassword2" runat="server" Text="Label"></asp:Label></td>
+                    <td>
+                        <asp:TextBox ID="txtNewPassword2" runat="server" TextMode="Password"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <asp:Button runat="server" ID="btnPasswordOk" class="button" />
+                        <asp:Button runat="server" ID="btnPasswordCancel" class="button" OnClick="btnPasswordCancel_Click" /></td>
+                </tr>
+            </table>
+        </asp:Panel>
+
+    </form>
+
+    <script type="text/javascript">
+
+        $(window).resize(function () {
+            var widthWindow = $(this).width();
+            if (widthWindow == 976) {
+                console.log("Quita el menu")
+                var validateClass = $(".navbar-collapse").hasClass("in");
+                if (validateClass) {
+                    $(".navbar-collapse").removeClass("in");
+                }
+            }
+        });
+
+        $(document).ready(function () {
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 500) {
+                    $('.scrollup').fadeIn();
+                } else {
+                    $('.scrollup').fadeOut();
+                }
+            });
+
+            $('.scrollup').click(function () {
+                $("html, body").animate({ scrollTop: 0 }, 600);
+                return false;
+            });
+        });
+    </script>
+</body>
+</html>

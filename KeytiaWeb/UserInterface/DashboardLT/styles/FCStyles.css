@@ -1,0 +1,132 @@
+﻿.MarcoCeleste
+{
+    border-color: #C6DBEF;
+    border-width: 1px;
+    border-style: solid;
+}
+.divToLeft
+{
+    width: 49.5%;
+    float: left;
+}
+
+.divToRight
+{
+    width: 49.5%;
+    float: right;
+}
+
+.divToCenter
+{
+    width: auto;
+    float: none;
+    border-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+}
+.Center
+{
+    margin: auto;
+    position: relative;
+}
+.TopCenter
+{
+    vertical-align: top;
+}
+.MaxWidth50Perc
+{
+    max-width: 50%;
+}
+.letraRoja
+{
+    color: Red;
+}
+.letraVerde
+{
+    color: Green;
+}
+/*
+.fondoAzulLetraBlanca
+{
+    color: White;
+    background-color: #4297D7;
+}
+*/
+
+/*Estilos de TabContainer*/
+.MyTabStyle .ajax__tab_header
+{
+    font-family: "Helvetica Neue" , Arial, Sans-Serif;
+    font-size: 10px;
+    font-weight: bold;
+    display: block;
+}
+.MyTabStyle .ajax__tab_header .ajax__tab_outer
+{
+    border-color: #c5dbec;
+    color: #2e6e9e;
+    padding-left: 10px;
+    margin-right: 3px;
+    border: solid 1px #c5dbec;
+}
+.MyTabStyle .ajax__tab_header .ajax__tab_inner
+{
+    border-color: #c5dbec;
+    color: #2e6e9e;
+    padding: 3px 10px 2px 0px;
+}
+.MyTabStyle .ajax__tab_hover .ajax__tab_outer
+{
+    background-color: #2e6e9e;
+}
+.MyTabStyle .ajax__tab_hover .ajax__tab_inner
+{
+    color: #c5dbec;
+}
+.MyTabStyle .ajax__tab_active .ajax__tab_outer
+{
+    border-bottom-color: #ffffff;
+    background-color: #2e6e9e;
+}
+.MyTabStyle .ajax__tab_active .ajax__tab_inner
+{
+    color: #c5dbec;
+    border-color: #c5dbec;
+}
+.MyTabStyle .ajax__tab_body
+{
+    font-family: verdana,tahoma,helvetica;
+    font-size: 10pt;
+    background-color: #fff;
+    border-top-width: 0;
+    border: solid 1px #c5dbec;
+    border-top-color: #ffffff;
+}
+
+td.fondoBlacoSinCalendar input.DSODateTimeBox
+{
+	background-color: white;
+    border-style : groove;
+}
+
+.placeholderstile::-webkit-input-placeholder { font-style:italic; }
+
+.imgStyleAutocomplete
+{
+	vertical-align: text-bottom;
+	margin-left: -2px;
+}
+
+.imgStyleHelp
+{
+	width: 18px;
+	height: 18px;
+	vertical-align: bottom;
+}
+
+.linkButtonHelpStyle
+{
+	float: right;
+	font-size: 12px;
+}
+
